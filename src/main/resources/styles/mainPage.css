@@ -3,7 +3,8 @@
 }
 
 #friends_pane {
-    -fx-background-color: #545454;
+    -fx-background-color: #75858E;
+    -fx-background-radius: 30;
 }
 
 #friends_label {
