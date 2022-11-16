@@ -1,11 +1,15 @@
 package net.alkitmessenger.util;
 
 import lombok.experimental.UtilityClass;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.stream.IntStream;
+
+import static java.lang.Byte.parseByte;
+
 @UtilityClass
 public class CryptorUtil {
-    public StringBuffer[] byteCryptor(byte[] buffer){
+    public static StringBuffer @NotNull [] byteCryptor(byte @NotNull [] buffer){
         StringBuffer[] result = new StringBuffer[buffer.length];
         for (int i = 0; i < buffer.length / 2; i++) {
             int temp = buffer[i];
@@ -35,7 +39,7 @@ public class CryptorUtil {
         return result[i];
     }
 
-    public String textCryptor(String text){
+    public static @NotNull String textCryptor(@NotNull String text){
         char[] tempArr = text.toCharArray();
 
         for (int i = 0; i < tempArr.length; i++) {
@@ -49,40 +53,48 @@ public class CryptorUtil {
         return String.valueOf(tempArr);
     }
 
+    public static byte @NotNull [] byteDecryptor(StringBuffer @NotNull [] cryptByte){
+        byte[] result = new byte[cryptByte.length];
+        for (int i = 0; i < cryptByte.length / 2; i++) {
+            StringBuffer tempInt = cryptByte[i];
+            cryptByte[i] = cryptByte[cryptByte.length - 1 - i];
+            cryptByte[cryptByte.length - 1 - i] = tempInt;
+        }
+        for (int i = 0; i < cryptByte.length; i++) {
+            if (cryptByte[i] != null){
+                result[i] = parseByte(cryptByte[i].toString().replaceAll("\\D+",""));
+                if (result[i] > 0)
+                    result[i] = (byte) ((byte) (result[i] * 26) + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]));
+                if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 26 && alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 0)
+                    result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) + 1;
+                else if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 26 && alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) > 0){
+                    result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) -1;
+                }
+            }
+            else
+                result[i] = 0;
+        }
+        return result;
+    }
+    public int alfabetToRemains(char r){
+        char[] usedm = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        char[] usedM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
-// переработать
+        if (Character.isUpperCase(r)){
+            for (int i = 0; i < usedM.length; i++) {
+                int comp = Character.compare(usedM[i], r);
+                if (comp > 0)
+                    return i;
+            }
+        }
+        else{
+            for (int i = 0; i < usedm.length; i++) {
+                int comp = Character.compare(usedm[i], r);
+                if (comp > 0)
+                    return -i;
+            }
+        }
 
-
-//    public byte[] byteDecryptor(StringBuffer[] cryptByte){
-//        byte[] result = new byte[cryptByte.length];
-//        for (int i = 0; i < cryptByte.length / 2; i++) {
-//            StringBuffer tempInt = cryptByte[i];
-//            cryptByte[i] = cryptByte[cryptByte.length - 1 - i];
-//            cryptByte[cryptByte.length - 1 - i] = tempInt;
-//        }
-//        for (int i = 0; i < cryptByte.length; i++) {
-//            if (cryptByte[i] != null){
-//                result[i] = Byte.parseByte(cryptByte[i].toString().replaceAll("\\D+","") + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]));
-//            }
-//            else
-//                result[i] = 0;
-//        }
-//        return result;
-//    }
-//    public int alfabetToRemains(char r){
-//        char[] used = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-//
-//        if (Character.isUpperCase(r)){
-//            for (int i = 0; i < used.length; i++) {
-//                if (used[i] == r) return i;
-//            }
-//        }
-//        else{
-//            for (int i = 0; i < used.length; i++) {
-//                if (used[i] == r) return -i;
-//            }
-//        }
-//
-//        return -1;
-//    }
+        return -1;
+    }
 }
