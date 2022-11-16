@@ -118,10 +118,10 @@
             </HBox>
             <ScrollPane hbarPolicy="NEVER" prefHeight="615.0" prefWidth="880.0" styleClass="scroll" VBox.vgrow="ALWAYS">
                <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                  <Insets right="10.0" />
                </padding>
                <content>
-                  <GridPane id="friends_pane" fx:id="friends_list" prefHeight="590.0" prefWidth="850.0">
+                  <GridPane id="friends_pane" fx:id="friends_list" prefHeight="610.0" prefWidth="870.0">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
