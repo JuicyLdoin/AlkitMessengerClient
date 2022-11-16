@@ -1,4 +1,4 @@
-module com.example.alkitbrowser {
+module net.alkitmessenger {
 
     requires javafx.controls;
     requires javafx.fxml;
