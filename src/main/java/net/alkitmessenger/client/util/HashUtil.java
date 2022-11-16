@@ -9,6 +9,7 @@ import java.security.MessageDigest;
 public class HashUtil {
 
     public static @NotNull String getHashCodeFromString(String str) {
+
         try {
 
 
