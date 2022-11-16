@@ -63,7 +63,8 @@ public class CryptorUtil {
         for (int i = 0; i < cryptByte.length; i++) {
             if (cryptByte[i] != null){
                 result[i] = parseByte(cryptByte[i].toString().replaceAll("\\D+",""));
-                if (result[i] > 0) result[i] = (byte) ((byte) (result[i] * 26) + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]));
+                if (result[i] > 0)
+                    result[i] = (byte) ((byte) (result[i] * 26) + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]));
                 if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 26 && alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 0)
                     result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) + 1;
                 else if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 26 && alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) > 0){
