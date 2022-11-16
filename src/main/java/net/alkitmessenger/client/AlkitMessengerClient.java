@@ -34,9 +34,9 @@ public class AlkitMessengerClient extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/mainScene.fxml"));
         main = fxmlLoader.load();
 
-        scene = new Scene(main, 820, 480);
+        scene = new Scene(main, 1080, 720);
 
-        stage.setMaximized(true);
+        stage.setResizable(false);
 
         stage.setTitle("AlkitMessenger");
         stage.setScene(scene);
