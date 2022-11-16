@@ -12,7 +12,6 @@ public class HashUtil {
 
         try {
 
-
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             md.update(str.getBytes());
 

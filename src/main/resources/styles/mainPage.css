@@ -1,0 +1,53 @@
+#user_avatar {
+    -fx-border-radius: 30;
+}
+
+#friends_pane {
+    -fx-background-color: #545454;
+}
+
+#friends_label {
+    -fx-border-style: solid;
+    -fx-border-width: 5;
+    -fx-border-color: white;
+}
+
+#find_user_pane {
+    -fx-background-color: #C1C1C1;
+
+    -fx-border-style: hidden hidden hidden solid;
+    -fx-border-color: black;
+    -fx-border-width: 5;
+}
+
+#find_user_scroll {
+    -fx-background-radius: 30;
+    -fx-background-color: #545454;
+
+    -fx-border-radius: 30;
+    -fx-border-color: black;
+    -fx-border-width: 5;
+}
+
+#find_friend_pane {
+    -fx-border-radius: 5;
+    -fx-border-color: black;
+    -fx-border-width: 5;
+}
+
+.scroll {
+    -fx-background-color: #545454;
+}
+
+.scroll .viewport {
+    -fx-background-color: #545454;
+}
+
+.scroll-bar {
+    -fx-background-color: #545454;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #343434;
+    -fx-background-radius: 5;
+}
