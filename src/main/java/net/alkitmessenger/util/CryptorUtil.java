@@ -66,13 +66,14 @@ public class CryptorUtil {
 
                 //System.out.println(cryptByte[i].toString().replaceAll("\\d+","").replaceAll("[-]", "").toCharArray()[0]);
                 if (result[i] > 0)
-                    result[i] = (byte) (result[i] * 26 + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").replaceAll("[-]", "").toCharArray()[0]));
+                    result[i] = (byte) (result[i] * 26 + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").replaceAll("-", "").toCharArray()[0]));
 
-                if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 26 && alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 0)
-                    result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) + 1;
-
-                else if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) < 26 && alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) > 0){
-                    result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").toCharArray()[0]) -1;
+                if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) < 26) {
+                    if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) < 0) {
+                        result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) + 1;
+                    } else if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) > 0) {
+                        result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) - 1;
+                    }
                 }
             }
             else
