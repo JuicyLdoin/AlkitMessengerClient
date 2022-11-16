@@ -19,7 +19,10 @@
             </Label>
             <HBox fillHeight="false" prefHeight="30.0" prefWidth="160.0">
                <children>
-                  <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="имя$uid" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="имя$uid" HBox.hgrow="ALWAYS">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></TextField>
                   <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onUserFindClick" prefHeight="30.0" prefWidth="30.0" HBox.hgrow="ALWAYS">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -94,7 +97,7 @@
                   </Label>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <TextField fx:id="friends_find_field" prefHeight="30.0" prefWidth="280.0" promptText="имя$uid" />
-                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onFriendFindClick" prefHeight="35.0" prefWidth="35.0">
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onFriendFindClick" prefHeight="35.0" prefWidth="35.0" HBox.hgrow="ALWAYS">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
