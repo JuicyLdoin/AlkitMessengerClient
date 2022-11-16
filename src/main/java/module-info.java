@@ -7,7 +7,7 @@ module net.alkitmessenger {
 
     requires com.google.gson;
 
-    requires lombok;
+    requires static lombok;
     requires org.jetbrains.annotations;
 
     requires org.controlsfx.controls;
