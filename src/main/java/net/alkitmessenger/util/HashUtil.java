@@ -1,4 +1,4 @@
-package net.alkitmessenger.client.util;
+package net.alkitmessenger.util;
 
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
