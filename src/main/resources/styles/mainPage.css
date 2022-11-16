@@ -18,7 +18,7 @@
 }
 
 #find_user_pane {
-    -fx-background-color: #C1C1C1;
+    -fx-background-color: #474747;
 
     -fx-border-style: hidden hidden hidden solid;
     -fx-border-color: black;
@@ -35,6 +35,9 @@
 }
 
 #find_friend_pane {
+    -fx-background-color: #474747;
+    -fx-background-radius: 10;
+
     -fx-border-radius: 5;
     -fx-border-color: black;
     -fx-border-width: 5;

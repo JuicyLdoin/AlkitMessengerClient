@@ -8,11 +8,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1080.0" stylesheets="@../styles/mainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.alkitmessenger.client.controllers.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/mainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.alkitmessenger.client.controllers.MainController">
    <right>
       <VBox id="find_user_pane" prefHeight="640.0" prefWidth="190.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="Find User" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="Find User" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="Arial Bold" size="28.0" />
                </font>
@@ -20,9 +20,9 @@
             <HBox fillHeight="false" prefHeight="30.0" prefWidth="160.0">
                <children>
                   <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="user_name$uid" HBox.hgrow="ALWAYS" />
-                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onUserFindClick" prefHeight="25.0" prefWidth="25.0" HBox.hgrow="ALWAYS">
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onUserFindClick" prefHeight="30.0" prefWidth="30.0" HBox.hgrow="ALWAYS">
                      <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/find_icon.png" />
                            </image>
@@ -69,7 +69,7 @@
       </VBox>
    </right>
    <center>
-      <VBox prefHeight="620.0" prefWidth="890.0" spacing="10.0" styleClass="scroll" BorderPane.alignment="CENTER">
+      <VBox prefHeight="640.0" prefWidth="890.0" spacing="10.0" styleClass="scroll" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="890.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
@@ -116,12 +116,12 @@
                   <Insets />
                </VBox.margin>
             </HBox>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="640.0" prefWidth="890.0" styleClass="scroll" VBox.vgrow="ALWAYS">
+            <ScrollPane hbarPolicy="NEVER" prefHeight="615.0" prefWidth="880.0" styleClass="scroll" VBox.vgrow="ALWAYS">
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <content>
-                  <GridPane id="friends_pane" fx:id="friends_list" prefHeight="510.0" prefWidth="850.0">
+                  <GridPane id="friends_pane" fx:id="friends_list" prefHeight="590.0" prefWidth="850.0">
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
