@@ -37,7 +37,7 @@ public class AlkitMessengerClient extends Application {
 
         stage.setMaximized(true);
 
-        stage.setTitle("AlkitBrowser");
+        stage.setTitle("AlkitMessenger");
         stage.setScene(scene);
 
         stage.show();
