@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.stream.IntStream;
 
 import static java.lang.Byte.parseByte;
+import static java.lang.Character.highSurrogate;
 
 @UtilityClass
 public class CryptorUtil {
@@ -23,19 +24,19 @@ public class CryptorUtil {
                 result[i] = new StringBuffer().append(buffer[i] / 26).append(remainsToAlfabet(buffer[i] % 26));
             }
         });
-
+        System.gc();
         return result;
     }
     public char remainsToAlfabet(int i){
         char[] result;
 
         if (i < 0){
-            result = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+            result = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
             i = -i;
         }
         else
-            result = new char[]{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-
+            result = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        System.gc();
         return result[i];
     }
 
@@ -43,13 +44,14 @@ public class CryptorUtil {
         char[] tempArr = text.toCharArray();
 
         for (int i = 0; i < tempArr.length; i++) {
-            tempArr[i] = (char) ((char) (tempArr[i] / 26) + remainsToAlfabet(tempArr[i] % 26));
+            tempArr[i] = highSurrogate(tempArr[i] / 26 + remainsToAlfabet(tempArr[i] % 26));
         }
         for (int i = 0; i < tempArr.length / 2; i++) {
             char temp = tempArr[i];
             tempArr[i] = tempArr[tempArr.length - 1 - i];
             tempArr[tempArr.length - 1 - i] = temp;
         }
+        System.gc();
         return String.valueOf(tempArr);
     }
 
@@ -79,27 +81,29 @@ public class CryptorUtil {
             else
                 result[i] = 0;
         }
+        System.gc();
         return result;
     }
     public int alfabetToRemains(char r){
         char[] usedm = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         char[] usedM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
+        int comp;
 
         if (Character.isUpperCase(r)){
             for (int i = 0; i < usedM.length; i++) {
-                int comp = Character.compare(usedM[i], r);
+                comp = Character.compare(usedM[i], r);
                 if (comp > 0)
                     return i;
             }
         }
         else{
             for (int i = 0; i < usedm.length; i++) {
-                int comp = Character.compare(usedm[i], r);
+                comp = Character.compare(usedm[i], r);
                 if (comp > 0)
                     return -i;
             }
         }
-
+        System.gc();
         return -1;
     }
 }
