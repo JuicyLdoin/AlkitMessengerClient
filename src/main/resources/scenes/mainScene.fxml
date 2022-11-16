@@ -8,7 +8,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1080.0" stylesheets="@../styles/mainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.alkitmessenger.client.controller.MainController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1080.0" stylesheets="@../styles/mainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.alkitmessenger.client.controllers.MainController">
    <right>
       <VBox id="find_user_pane" prefHeight="640.0" prefWidth="190.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -71,7 +71,7 @@
    <center>
       <VBox prefHeight="620.0" prefWidth="890.0" spacing="10.0" styleClass="scroll" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" minHeight="50.0" prefHeight="50.0" prefWidth="890.0" spacing="5.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="890.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
                   <ImageView id="user_avatar" fx:id="user_avatar" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
                   <Label fx:id="user_name_label" text="User Name$UID" textFill="WHITE" HBox.hgrow="ALWAYS">
@@ -84,7 +84,7 @@
                   <Insets top="10.0" />
                </padding>
             </HBox>
-            <HBox id="find_friend_pane" fillHeight="false" prefHeight="35.0" prefWidth="870.0" VBox.vgrow="ALWAYS">
+            <HBox id="find_friend_pane" fillHeight="false" maxHeight="35.0" prefHeight="35.0" prefWidth="870.0" VBox.vgrow="ALWAYS">
                <children>
                   <Label prefHeight="25.0" prefWidth="58.0" text="Friends" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
