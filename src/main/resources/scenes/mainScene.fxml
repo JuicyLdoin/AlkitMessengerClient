@@ -12,14 +12,14 @@
    <right>
       <VBox id="find_user_pane" prefHeight="640.0" prefWidth="190.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="Find User" textFill="WHITE" VBox.vgrow="ALWAYS">
+            <Label alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="Найти пользователя" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
-                  <Font name="Arial Bold" size="28.0" />
+                  <Font name="Arial Bold" size="15.0" />
                </font>
             </Label>
             <HBox fillHeight="false" prefHeight="30.0" prefWidth="160.0">
                <children>
-                  <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="user_name$uid" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="имя$uid" HBox.hgrow="ALWAYS" />
                   <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onUserFindClick" prefHeight="30.0" prefWidth="30.0" HBox.hgrow="ALWAYS">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -74,7 +74,7 @@
             <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="890.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
                   <ImageView id="user_avatar" fx:id="user_avatar" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="user_name_label" text="User Name$UID" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label fx:id="user_name_label" text="Имя$UID" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
@@ -84,15 +84,15 @@
                   <Insets top="10.0" />
                </padding>
             </HBox>
-            <HBox id="find_friend_pane" fillHeight="false" maxHeight="35.0" prefHeight="35.0" prefWidth="870.0" VBox.vgrow="ALWAYS">
+            <HBox id="find_friend_pane" alignment="CENTER" fillHeight="false" maxHeight="35.0" prefHeight="35.0" prefWidth="870.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="25.0" prefWidth="58.0" text="Friends" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Label prefHeight="25.0" prefWidth="58.0" text="Друзья" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
                   </Label>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="friends_find_field" prefHeight="30.0" prefWidth="280.0" promptText="friend_name$uid" />
+                  <TextField fx:id="friends_find_field" prefHeight="30.0" prefWidth="280.0" promptText="имя$uid" />
                   <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onFriendFindClick" prefHeight="35.0" prefWidth="35.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -113,7 +113,7 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
                <VBox.margin>
-                  <Insets />
+                  <Insets right="10.0" />
                </VBox.margin>
             </HBox>
             <ScrollPane hbarPolicy="NEVER" prefHeight="615.0" prefWidth="880.0" styleClass="scroll" VBox.vgrow="ALWAYS">
