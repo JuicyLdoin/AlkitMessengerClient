@@ -73,15 +73,16 @@
          <children>
             <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="890.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
-                  <ImageView id="user_avatar" fx:id="user_avatar" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
+                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <Label fx:id="user_name_label" text="Имя$UID" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="Arial Bold" size="20.0" />
                      </font>
                   </Label>
+                  <ImageView id="user_avatar" fx:id="user_avatar" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
                </children>
                <padding>
-                  <Insets top="10.0" />
+                  <Insets right="10.0" top="10.0" />
                </padding>
             </HBox>
             <HBox id="find_friend_pane" alignment="CENTER" fillHeight="false" maxHeight="35.0" prefHeight="35.0" prefWidth="870.0" VBox.vgrow="ALWAYS">
