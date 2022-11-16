@@ -1,4 +1,4 @@
-package net.alkitmessenger.util;
+package net.alkitmessenger.client.util;
 
 import lombok.experimental.UtilityClass;
 import org.jetbrains.annotations.NotNull;
@@ -9,7 +9,9 @@ import java.security.MessageDigest;
 public class HashUtil {
 
     public static @NotNull String getHashCodeFromString(String str) {
+
         try {
+
 
             MessageDigest md = MessageDigest.getInstance("SHA-512");
             md.update(str.getBytes());
@@ -20,6 +22,7 @@ public class HashUtil {
                 hashCodeBuffer.append(Integer.toString((byteDatum & 0xFF) + 256, 9));
 
             return hashCodeBuffer.toString();
+
         } catch (Exception exception) {
 
             exception.printStackTrace();
@@ -27,5 +30,6 @@ public class HashUtil {
         }
 
         return "";
+
     }
 }
