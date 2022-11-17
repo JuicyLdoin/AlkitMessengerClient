@@ -1,0 +1,7 @@
+#background {
+    -fx-background-color: linear-gradient(to bottom, #000000, #4f596e);
+}
+
+#login_button {
+    -fx-background-color: linear-gradient(to bottom, #4f596e, #000000);
+}
