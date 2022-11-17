@@ -13,9 +13,9 @@ public class CryptorUtil {
     public static StringBuffer @NotNull [] byteCryptor(byte @NotNull [] buffer){
         StringBuffer[] result = new StringBuffer[buffer.length];
         for (int i = 0; i < buffer.length / 2; i++) {
-            int temp = buffer[i];
+            byte temp = buffer[i];
             buffer[i] = buffer[buffer.length - 1 - i];
-            buffer[buffer.length - 1 - i] = (byte) temp;
+            buffer[buffer.length - 1 - i] = temp;
         }
 
         IntStream.range(0, buffer.length).forEach(i -> {
