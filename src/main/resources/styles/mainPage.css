@@ -1,12 +1,15 @@
+.background {
+    -fx-background-color: linear-gradient(to bottom, black, #4f596e);
+}
+
 #user_avatar {
     -fx-border-radius: 30;
+    -fx-border-width: 1;
+    -fx-border-color: white;
 }
 
 #friends_pane {
-    -fx-background-color: #5F6366;
-    -fx-background-radius: 30;
-
-    -fx-border-color: #595E60;
+    -fx-border-color: white;
     -fx-border-width: 5;
     -fx-border-radius: 20;
 }
@@ -18,44 +21,40 @@
 }
 
 #find_user_pane {
-    -fx-background-color: #474747;
-
     -fx-border-style: hidden hidden hidden solid;
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-border-width: 2;
 }
 
 #find_user_scroll {
     -fx-background-radius: 30;
-    -fx-background-color: #545454;
 
     -fx-border-radius: 30;
-    -fx-border-color: black;
+    -fx-border-color: white;
     -fx-border-width: 2;
 }
 
 #find_friend_pane {
-    -fx-background-color: #474747;
     -fx-background-radius: 10;
 
     -fx-border-radius: 5;
-    -fx-border-color: black;
+    -fx-border-color: linear-gradient(to right, white, #666666);
     -fx-border-width: 2;
 }
 
 .scroll {
-    -fx-background-color: #545454;
+    -fx-background-color: transparent;
 }
 
 .scroll .viewport {
-    -fx-background-color: #545454;
+    -fx-background-color: transparent;
 }
 
 .scroll-bar {
-    -fx-background-color: #545454;
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #343434;
+    -fx-background-color: #8E8E8E;
     -fx-background-radius: 5;
 }

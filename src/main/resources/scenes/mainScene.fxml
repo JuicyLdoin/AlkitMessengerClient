@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/mainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.alkitmessenger.client.controllers.MainController">
    <right>
-      <VBox id="find_user_pane" prefHeight="640.0" prefWidth="190.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox id="find_user_pane" prefHeight="640.0" prefWidth="190.0" spacing="10.0" styleClass="background" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="Найти пользователя" textFill="WHITE" VBox.vgrow="ALWAYS">
                <font>
@@ -19,10 +19,7 @@
             </Label>
             <HBox fillHeight="false" prefHeight="30.0" prefWidth="160.0">
                <children>
-                  <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="имя$uid" HBox.hgrow="ALWAYS">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></TextField>
+                  <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="имя$uid" HBox.hgrow="ALWAYS" />
                   <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onUserFindClick" prefHeight="30.0" prefWidth="30.0" HBox.hgrow="ALWAYS">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -44,7 +41,7 @@
                <children>
                   <ScrollPane hbarPolicy="NEVER" prefHeight="570.0" prefWidth="160.0" styleClass="scroll">
                      <content>
-                        <VBox fx:id="users_list" prefHeight="550.0" prefWidth="140.0">
+                        <VBox fx:id="users_list" prefHeight="570.0" prefWidth="140.0">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -72,7 +69,7 @@
       </VBox>
    </right>
    <center>
-      <VBox prefHeight="640.0" prefWidth="890.0" spacing="10.0" styleClass="scroll" BorderPane.alignment="CENTER">
+      <VBox prefHeight="640.0" prefWidth="890.0" spacing="10.0" styleClass="background" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="890.0" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
@@ -97,7 +94,7 @@
                   </Label>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <TextField fx:id="friends_find_field" prefHeight="30.0" prefWidth="280.0" promptText="имя$uid" />
-                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onFriendFindClick" prefHeight="35.0" prefWidth="35.0" HBox.hgrow="ALWAYS">
+                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onFriendFindClick" prefHeight="35.0" prefWidth="35.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
