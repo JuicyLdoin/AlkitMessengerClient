@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+import net.alkitmessenger.user.User;
 import net.alkitmessenger.util.CryptorUtil;
 
 import java.io.IOException;
@@ -17,14 +18,17 @@ import java.io.IOException;
 public class AlkitMessengerClient extends Application {
 
     private static AlkitMessengerClient alkitMessengerClient;
-    Parent main;
-    Scene scene;
 
     public static AlkitMessengerClient getAlkitMessengerClient() {
 
         return alkitMessengerClient;
 
     }
+
+    Parent main;
+    Scene scene;
+
+    User user;
 
     public void start(Stage stage) throws IOException {
 
@@ -41,6 +45,8 @@ public class AlkitMessengerClient extends Application {
         stage.setScene(scene);
 
         stage.show();
+
+
 
 
         byte[] test = new byte[]{0, 5, -4, 2, 127, -85, 25};
