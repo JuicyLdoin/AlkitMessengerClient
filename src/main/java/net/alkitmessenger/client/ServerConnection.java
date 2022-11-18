@@ -7,18 +7,17 @@ import net.alkitmessenger.packet.PacketSerialize;
 import net.alkitmessenger.packet.packets.output.AuthorizePacket;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Scanner;
 
 @Value
 public class ServerConnection extends Thread {
 
-    BufferedReader in;
+    Scanner in;
 
     Queue<Packet> outPackets;
     PrintWriter out;
@@ -29,7 +28,7 @@ public class ServerConnection extends Thread {
 
             Socket socket = new Socket(host, port);
 
-            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            in = new Scanner(socket.getInputStream());
 
             outPackets = new LinkedList<>();
             out = new PrintWriter(socket.getOutputStream());
@@ -59,7 +58,7 @@ public class ServerConnection extends Thread {
 
                 // получение пакетов от сервера
 
-                while (in.ready())
+                while (in.hasNext())
                     PacketSerialize.serialize(in).work();
 
                 // отправка пакетов серверу из очереди

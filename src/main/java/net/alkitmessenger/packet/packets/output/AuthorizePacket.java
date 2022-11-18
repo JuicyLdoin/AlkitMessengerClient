@@ -12,7 +12,8 @@ public class AuthorizePacket extends Packet {
 
     public void serialize(@NonNull PrintWriter printWriter) {
 
-        printWriter.println(getID(getClass()));
+        printWriter.print(getID(getClass()));
+        printWriter.println();
 
         writeObject(printWriter, AuthorizeCodeUtil.CODE);
 
