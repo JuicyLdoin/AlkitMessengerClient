@@ -4,8 +4,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-import net.alkitmessenger.server.packet.packets.input.*;
-import net.alkitmessenger.server.packet.packets.output.*;
+import net.alkitmessenger.packet.packets.input.*;
+import net.alkitmessenger.packet.packets.output.*;
 
 @Getter
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
