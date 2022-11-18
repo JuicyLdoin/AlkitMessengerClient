@@ -1,6 +1,9 @@
 package net.alkitmessenger.packet.packets.input;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,6 +45,9 @@ public class SendToWindowPacket extends Packet {
     @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
     public enum Windows {
 
+        LOGIN("/scenes/authorize/loginScene.fxml", 320, 400, false, false, false),
+        REGISTER("/scenes/authorize/registrationScene.fxml", 400, 500, false, false, false),
+
         MAIN("/scenes/mainScene.fxml", 0, 0, true, true, false);
 
         String path;
@@ -57,6 +63,16 @@ public class SendToWindowPacket extends Packet {
         public void open() throws IOException {
 
             FXMLLoader fxmlLoader = FXMLLoader.load(getClass().getResource(path));
+            Stage stage = AlkitMessengerClient.getAlkitMessengerClient().getStage();
+
+            stage.setWidth(width);
+            stage.setHeight(height);
+
+            stage.setResizable(resize);
+            stage.setMaximized(maximized);
+
+            stage.setFullScreen(fullScreen);
+
             AlkitMessengerClient.getAlkitMessengerClient().getScene().setRoot(fxmlLoader.load());
 
         }

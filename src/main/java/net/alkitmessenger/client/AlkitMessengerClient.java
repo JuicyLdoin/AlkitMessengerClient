@@ -28,6 +28,8 @@ public class AlkitMessengerClient extends Application {
     Parent main;
     Scene scene;
 
+    Stage stage;
+
     long user;
     final UserManager userManager;
 
@@ -40,6 +42,8 @@ public class AlkitMessengerClient extends Application {
     public void start(Stage stage) throws IOException {
 
         alkitMessengerClient = this;
+
+        this.stage = stage;
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/mainScene.fxml"));
         main = fxmlLoader.load();
