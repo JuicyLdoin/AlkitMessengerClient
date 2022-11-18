@@ -13,6 +13,7 @@ public class UserDataReceivePacket extends Packet {
 
     public void serialize(@NonNull PrintWriter printWriter) {
 
+        printWriter.println(getID(getClass()));
         writeObject(printWriter, uid);
 
     }

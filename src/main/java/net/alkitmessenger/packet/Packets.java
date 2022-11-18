@@ -14,7 +14,6 @@ public enum Packets {
     USER_DATA_RECEIVE_PACKET((byte) -3, UserDataReceivePacket.class),
     USER_DISCONNECT_PACKET((byte) -2, UserDisconnectPacket.class),
     USER_LOGIN_PACKET((byte) -1, UserLoginPacket.class),
-    USER_CONNECT_TO_SERVER((byte) 0, UserConnectToServer.class),
 
     AUTHORIZE_PACKET((byte) 0, AuthorizePacket.class),
 

@@ -4,6 +4,7 @@ import lombok.NonNull;
 import lombok.Value;
 import net.alkitmessenger.packet.Packet;
 import net.alkitmessenger.packet.PacketSerialize;
+import net.alkitmessenger.packet.packets.output.AuthorizePacket;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
@@ -32,6 +33,8 @@ public class ServerConnection extends Thread {
 
             outPackets = new LinkedList<>();
             out = new PrintWriter(socket.getOutputStream());
+
+            new AuthorizePacket().serialize(out);
 
         } catch (IOException e) {
 
