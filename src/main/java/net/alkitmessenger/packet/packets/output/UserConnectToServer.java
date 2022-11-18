@@ -34,9 +34,13 @@ public class UserConnectToServer extends Packet {
     public void work() throws PacketWorkException {
         writer.println("New User Connect!");
         while(true){
+
             while(scanner.hasNext()){
+
                 System.out.println(scanner.nextLine());
+
             }
+
         }
     }
 }
