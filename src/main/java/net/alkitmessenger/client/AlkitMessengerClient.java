@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+import net.alkitmessenger.packet.packets.output.UserConnectToServer;
 import net.alkitmessenger.user.UserManager;
 import net.alkitmessenger.util.CryptorUtil;
 
@@ -61,6 +62,9 @@ public class AlkitMessengerClient extends Application {
         for (int i = 0; i < test2.length; i++) {
             System.out.println(test2[i]);
         }
+
+        UserConnectToServer server = new UserConnectToServer("localhost", (short) 7575);
+        server.work();
 
     }
 

@@ -1,12 +1,10 @@
 package net.alkitmessenger.user.message;
 
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-import net.alkitmessenger.AlkitMessenger;
 import net.alkitmessenger.user.User;
 
 import java.util.ArrayList;
@@ -19,17 +17,13 @@ import java.util.stream.Stream;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 
-@Entity
-@Table(name = "private_messages")
 public class PrivateMessages {
 
-    @Id
     long id;
 
     long user1;
     long user2;
 
-    @ManyToOne(targetEntity = Message.class)
     List<Message> messages;
 
     public PrivateMessages(@NonNull long user1, @NonNull long user2) {
@@ -64,18 +58,6 @@ public class PrivateMessages {
     public boolean hasUser(@NonNull long user) {
 
         return user1 == user || user2 == user;
-
-    }
-
-    public User getSecondUser(@NonNull User user) {
-
-        return getSecondUser(user.getId());
-
-    }
-
-    public User getSecondUser(@NonNull long user) {
-
-        return AlkitMessenger.getAlkitMessenger().getUserManager().getUserByID(getSecondUserID(user));
 
     }
 
