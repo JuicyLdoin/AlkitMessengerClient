@@ -5,146 +5,135 @@
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" stylesheets="@../styles/mainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.alkitmessenger.client.controllers.MainController">
    <right>
-      <VBox id="find_user_pane" prefHeight="640.0" prefWidth="190.0" spacing="10.0" styleClass="background" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="Найти пользователя" textFill="WHITE" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="Arial Bold" size="15.0" />
-               </font>
-            </Label>
-            <HBox fillHeight="false" prefHeight="30.0" prefWidth="160.0">
-               <children>
-                  <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="имя$uid" HBox.hgrow="ALWAYS" />
-                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onUserFindClick" prefHeight="30.0" prefWidth="30.0" HBox.hgrow="ALWAYS">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/find_icon.png" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </HBox>
-            <VBox id="find_user_scroll" prefHeight="630.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <ScrollPane hbarPolicy="NEVER" prefHeight="570.0" prefWidth="160.0" styleClass="scroll">
-                     <content>
-                        <VBox fx:id="users_list" prefHeight="570.0" prefWidth="140.0">
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </content>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </ScrollPane>
-               </children>
-               <padding>
-                  <Insets bottom="25.0" top="25.0" />
-               </padding>
-            </VBox>
-         </children>
+      <VBox id="find_user_pane" prefHeight="640.0" prefWidth="190.0" spacing="10.0" styleClass="background"
+            BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets />
+            <Insets/>
          </BorderPane.margin>
          <padding>
-            <Insets bottom="10.0" left="10.0" right="5.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="5.0" top="10.0"/>
          </padding>
+         <Label alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="Найти пользователя" textFill="WHITE"
+                VBox.vgrow="ALWAYS">
+            <font>
+               <Font name="Arial Bold" size="15.0"/>
+            </font>
+         </Label>
+         <HBox fillHeight="false" prefHeight="30.0" prefWidth="160.0">
+            <TextField fx:id="user_find_field" prefHeight="30.0" prefWidth="130.0" promptText="имя$uid"
+                       HBox.hgrow="ALWAYS"/>
+            <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onUserFindClick" prefHeight="30.0"
+                    prefWidth="30.0" HBox.hgrow="ALWAYS">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <viewport>
+                        <Rectangle2D/>
+                     </viewport>
+                     <Image url="@../images/find_icon.png"/>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND"/>
+               </cursor>
+            </Button>
+         </HBox>
+         <VBox id="find_user_scroll" prefHeight="630.0" prefWidth="170.0" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets bottom="25.0" top="25.0"/>
+            </padding>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="570.0" prefWidth="160.0" styleClass="scroll">
+               <VBox.margin>
+                  <Insets/>
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+               </padding>
+               <VBox fx:id="users_list" prefHeight="570.0" prefWidth="140.0">
+                  <padding>
+                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                  </padding>
+               </VBox>
+            </ScrollPane>
+         </VBox>
       </VBox>
    </right>
    <center>
       <VBox prefHeight="640.0" prefWidth="890.0" spacing="10.0" styleClass="background" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="890.0" spacing="5.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <Label fx:id="user_name_label" text="Имя$UID" textFill="WHITE" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="Arial Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <ImageView id="user_avatar" fx:id="user_avatar" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS" />
-               </children>
-               <padding>
-                  <Insets right="10.0" top="10.0" />
-               </padding>
-            </HBox>
-            <HBox id="find_friend_pane" alignment="CENTER" fillHeight="false" maxHeight="35.0" prefHeight="35.0" prefWidth="870.0" VBox.vgrow="ALWAYS">
-               <children>
-                  <Label prefHeight="25.0" prefWidth="58.0" text="Друзья" textFill="WHITE" HBox.hgrow="ALWAYS">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="friends_find_field" prefHeight="30.0" prefWidth="280.0" promptText="имя$uid" />
-                  <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onFriendFindClick" prefHeight="35.0" prefWidth="35.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/find_icon.png" />
-                           </image>
-                           <viewport>
-                              <Rectangle2D />
-                           </viewport>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets left="10.0" right="10.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets right="10.0" />
-               </VBox.margin>
-            </HBox>
-            <ScrollPane hbarPolicy="NEVER" prefHeight="615.0" prefWidth="880.0" styleClass="scroll" vbarPolicy="ALWAYS" VBox.vgrow="ALWAYS">
-               <padding>
-                  <Insets right="10.0" />
-               </padding>
-               <content>
-                  <GridPane id="friends_pane" fx:id="friends_list" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="845.0">
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                    </rowConstraints>
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                  </GridPane>
-               </content>
-               <VBox.margin>
-                  <Insets right="10.0" />
-               </VBox.margin>
-            </ScrollPane>
-         </children>
          <padding>
-            <Insets left="10.0" />
+            <Insets left="10.0"/>
          </padding>
+         <HBox alignment="CENTER_LEFT" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="890.0"
+               spacing="5.0" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets right="10.0" top="10.0"/>
+            </padding>
+            <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+            <Label fx:id="user_name_label" text="Имя$UID" textFill="WHITE" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Arial Bold" size="20.0"/>
+               </font>
+            </Label>
+            <ImageView id="user_avatar" fx:id="user_avatar" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true"
+                       preserveRatio="true" HBox.hgrow="ALWAYS"/>
+         </HBox>
+         <HBox id="find_friend_pane" alignment="CENTER" fillHeight="false" maxHeight="35.0" prefHeight="35.0"
+               prefWidth="870.0" VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets left="10.0" right="10.0"/>
+            </padding>
+            <VBox.margin>
+               <Insets right="10.0"/>
+            </VBox.margin>
+            <Label prefHeight="25.0" prefWidth="58.0" text="Друзья" textFill="WHITE" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="System Bold" size="16.0"/>
+               </font>
+            </Label>
+            <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="friends_find_field" prefHeight="30.0" prefWidth="280.0" promptText="имя$uid"/>
+            <Button graphicTextGap="0.0" mnemonicParsing="false" onMouseClicked="#onFriendFindClick"
+                    prefHeight="35.0" prefWidth="35.0">
+               <cursor>
+                  <Cursor fx:constant="HAND"/>
+               </cursor>
+               <graphic>
+                  <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                     <viewport>
+                        <Rectangle2D/>
+                     </viewport>
+                     <Image url="@../images/find_icon.png"/>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </HBox>
+         <ScrollPane hbarPolicy="NEVER" prefHeight="615.0" prefWidth="880.0" styleClass="scroll" vbarPolicy="ALWAYS"
+                     VBox.vgrow="ALWAYS">
+            <padding>
+               <Insets right="10.0"/>
+            </padding>
+            <VBox.margin>
+               <Insets right="10.0"/>
+            </VBox.margin>
+            <GridPane id="friends_pane" fx:id="friends_list" maxHeight="-Infinity" maxWidth="-Infinity"
+                      minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="845.0">
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS"/>
+               </rowConstraints>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+               </columnConstraints>
+            </GridPane>
+         </ScrollPane>
       </VBox>
    </center>
 </BorderPane>
