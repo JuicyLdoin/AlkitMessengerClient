@@ -13,7 +13,10 @@ public class AuthorizePacket extends Packet {
     public void serialize(@NonNull PrintWriter printWriter) {
 
         printWriter.println(getID(getClass()));
+
         writeObject(printWriter, AuthorizeCodeUtil.CODE);
+
+        printWriter.flush();
 
     }
 }

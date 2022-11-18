@@ -13,7 +13,10 @@ public class UserDisconnectPacket extends Packet {
     public void serialize(@NonNull PrintWriter printWriter) {
 
         printWriter.println(getID(getClass()));
+
         writeObject(printWriter, AlkitMessengerClient.getAlkitMessengerClient().getUser());
+
+        printWriter.flush();
 
     }
 }
