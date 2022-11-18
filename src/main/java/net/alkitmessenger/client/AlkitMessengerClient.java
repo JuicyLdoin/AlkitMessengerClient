@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
-import net.alkitmessenger.user.User;
+import net.alkitmessenger.user.UserManager;
 import net.alkitmessenger.util.CryptorUtil;
 
 import java.io.IOException;
@@ -28,11 +28,13 @@ public class AlkitMessengerClient extends Application {
     Parent main;
     Scene scene;
 
-    User user;
+    long user;
+    UserManager userManager;
 
     public void start(Stage stage) throws IOException {
 
         alkitMessengerClient = this;
+        userManager = new UserManager();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/mainScene.fxml"));
         main = fxmlLoader.load();
@@ -45,7 +47,6 @@ public class AlkitMessengerClient extends Application {
         stage.setScene(scene);
 
         stage.show();
-
 
 
 

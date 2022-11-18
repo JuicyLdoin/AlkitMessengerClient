@@ -21,6 +21,12 @@ public class UserManager {
 
     }
 
+    public void loadUser(long id) {
+
+        
+
+    }
+
     public User getUserByID(@NonNull long id) {
 
         return users.get(id);
