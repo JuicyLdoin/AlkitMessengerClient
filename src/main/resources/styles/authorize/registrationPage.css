@@ -1,0 +1,7 @@
+#background {
+    -fx-background-color: linear-gradient(to bottom, black, #4f596e);
+}
+
+#register_button {
+    -fx-background-color: linear-gradient(to bottom, #4f596e, black);
+}
