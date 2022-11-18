@@ -17,15 +17,14 @@ import java.io.IOException;
 public class AlkitMessengerClient extends Application {
 
     private static AlkitMessengerClient alkitMessengerClient;
+    Parent main;
+    Scene scene;
 
     public static AlkitMessengerClient getAlkitMessengerClient() {
 
         return alkitMessengerClient;
 
     }
-
-    Parent main;
-    Scene scene;
 
     public void start(Stage stage) throws IOException {
 
@@ -44,7 +43,7 @@ public class AlkitMessengerClient extends Application {
         stage.show();
 
 
-        byte[] test = new byte[] {0, 5, -4, 2, 127, -85, 25};
+        byte[] test = new byte[]{0, 5, -4, 2, 127, -85, 25};
         StringBuffer[] test1 = CryptorUtil.byteCryptor(test);
         byte[] test2 = CryptorUtil.byteDecryptor(test1);
         for (int i = 0; i < test2.length; i++) {

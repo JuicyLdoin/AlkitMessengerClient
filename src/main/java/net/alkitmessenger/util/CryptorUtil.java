@@ -10,7 +10,7 @@ import static java.lang.Character.highSurrogate;
 
 @UtilityClass
 public class CryptorUtil {
-    public static StringBuffer @NotNull [] byteCryptor(byte @NotNull [] buffer){
+    public static StringBuffer @NotNull [] byteCryptor(byte @NotNull [] buffer) {
         StringBuffer[] result = new StringBuffer[buffer.length];
         for (int i = 0; i < buffer.length / 2; i++) {
             byte temp = buffer[i];
@@ -27,20 +27,20 @@ public class CryptorUtil {
         System.gc();
         return result;
     }
-    public char remainsToAlfabet(int i){
+
+    public char remainsToAlfabet(int i) {
         char[] result;
 
-        if (i < 0){
+        if (i < 0) {
             result = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
             i = -i;
-        }
-        else
+        } else
             result = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         System.gc();
         return result[i];
     }
 
-    public static @NotNull String textCryptor(@NotNull String text){
+    public static @NotNull String textCryptor(@NotNull String text) {
         char[] tempArr = text.toCharArray();
 
         for (int i = 0; i < tempArr.length; i++) {
@@ -55,7 +55,7 @@ public class CryptorUtil {
         return String.valueOf(tempArr);
     }
 
-    public static byte @NotNull [] byteDecryptor(StringBuffer @NotNull [] cryptByte){
+    public static byte @NotNull [] byteDecryptor(StringBuffer @NotNull [] cryptByte) {
         byte[] result = new byte[cryptByte.length];
         for (int i = 0; i < cryptByte.length / 2; i++) {
             StringBuffer tempInt = cryptByte[i];
@@ -63,12 +63,12 @@ public class CryptorUtil {
             cryptByte[cryptByte.length - 1 - i] = tempInt;
         }
         for (int i = 0; i < cryptByte.length; i++) {
-            if (cryptByte[i] != null){
-                result[i] = parseByte(cryptByte[i].toString().replaceAll("\\D+",""));
+            if (cryptByte[i] != null) {
+                result[i] = parseByte(cryptByte[i].toString().replaceAll("\\D+", ""));
 
                 //System.out.println(cryptByte[i].toString().replaceAll("\\d+","").replaceAll("[-]", "").toCharArray()[0]);
                 if (result[i] > 0)
-                    result[i] = (byte) (result[i] * 26 + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+","").replaceAll("-", "").toCharArray()[0]));
+                    result[i] = (byte) (result[i] * 26 + alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").replaceAll("-", "").toCharArray()[0]));
 
                 if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) < 26) {
                     if (alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) < 0) {
@@ -77,26 +77,25 @@ public class CryptorUtil {
                         result[i] += alfabetToRemains(cryptByte[i].toString().replaceAll("\\d+", "").toCharArray()[0]) - 1;
                     }
                 }
-            }
-            else
+            } else
                 result[i] = 0;
         }
         System.gc();
         return result;
     }
-    public int alfabetToRemains(char r){
+
+    public int alfabetToRemains(char r) {
         char[] usedm = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         char[] usedM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         int comp;
 
-        if (Character.isUpperCase(r)){
+        if (Character.isUpperCase(r)) {
             for (int i = 0; i < usedM.length; i++) {
                 comp = Character.compare(usedM[i], r);
                 if (comp > 0)
                     return i;
             }
-        }
-        else{
+        } else {
             for (int i = 0; i < usedm.length; i++) {
                 comp = Character.compare(usedm[i], r);
                 if (comp > 0)

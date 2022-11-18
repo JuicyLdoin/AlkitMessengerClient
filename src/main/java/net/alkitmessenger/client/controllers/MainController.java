@@ -37,12 +37,10 @@ public class MainController implements Initializable {
     private void onFriendFindClick() {
 
 
-
     }
 
     @FXML
     private void onUserFindClick() {
-
 
 
     }
