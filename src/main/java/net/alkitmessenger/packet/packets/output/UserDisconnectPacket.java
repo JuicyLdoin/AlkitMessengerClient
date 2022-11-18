@@ -6,4 +6,5 @@ import net.alkitmessenger.packet.Packet;
 @Value
 public class UserDisconnectPacket extends Packet {
 
+
 }
