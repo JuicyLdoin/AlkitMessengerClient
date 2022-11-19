@@ -32,6 +32,12 @@ public enum Packets {
 
     }
 
+    public int getArgsLength() {
+
+        return clazz.getConstructors()[0].getParameterCount();
+
+    }
+
     public static Packets getByID(@NonNull byte id) {
 
         for (Packets packets : values())

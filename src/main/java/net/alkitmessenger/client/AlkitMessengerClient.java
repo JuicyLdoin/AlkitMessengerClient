@@ -38,6 +38,8 @@ public class AlkitMessengerClient extends Application {
 
     public AlkitMessengerClient() {
 
+        alkitMessengerClient = this;
+
         user = ThreadLocalRandom.current().nextLong();
         userManager = new UserManager();
 
@@ -46,8 +48,6 @@ public class AlkitMessengerClient extends Application {
     }
 
     public void start(Stage stage) throws IOException {
-
-        alkitMessengerClient = this;
 
         this.stage = stage;
 

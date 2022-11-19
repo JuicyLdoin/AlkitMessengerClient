@@ -26,8 +26,9 @@ public class PacketSerialize {
 
         List<PacketData<?>> args = new ArrayList<>();
 
-        while (bufferedReader.ready())
-            args.add(new Gson().fromJson(bufferedReader.readLine(), PacketData.class));
+        if (bufferedReader.ready())
+            for (int i = 0; i < packets.getArgsLength(); i++)
+                args.add(new Gson().fromJson(bufferedReader.readLine(), PacketData.class));
 
         Class<?>[] classes = new Class<?>[args.size()];
         Object[] objects = new Object[args.size()];

@@ -13,5 +13,7 @@ public class UserConnectPacket extends Packet {
         printWriter.println(getID(getClass()));
         writeObject(printWriter, AlkitMessengerClient.getAlkitMessengerClient().getUser());
 
+        printWriter.flush();
+
     }
 }
