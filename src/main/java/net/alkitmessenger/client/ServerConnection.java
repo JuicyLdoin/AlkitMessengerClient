@@ -3,7 +3,10 @@ package net.alkitmessenger.client;
 import lombok.NonNull;
 import lombok.Value;
 import net.alkitmessenger.packet.Packet;
+import net.alkitmessenger.packet.PacketFeedback;
 import net.alkitmessenger.packet.PacketSerialize;
+import net.alkitmessenger.packet.Packets;
+import net.alkitmessenger.packet.packets.input.ExceptionPacket;
 import net.alkitmessenger.packet.packets.output.AuthorizePacket;
 import net.alkitmessenger.packet.packets.output.UserConnectPacket;
 import org.jetbrains.annotations.NotNull;
@@ -13,9 +16,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
-import java.util.Scanner;
 
 @Value
 public class ServerConnection extends Thread {
@@ -24,6 +28,8 @@ public class ServerConnection extends Thread {
 
     Queue<Packet> outPackets;
     PrintWriter out;
+
+    List<PacketFeedback> packetFeedback;
 
     public ServerConnection(@NonNull String host, @NotNull short port) {
 
@@ -35,6 +41,8 @@ public class ServerConnection extends Thread {
 
             outPackets = new LinkedList<>();
             out = new PrintWriter(socket.getOutputStream());
+
+            packetFeedback = new ArrayList<>();
 
             new AuthorizePacket().serialize(out);
             new UserConnectPacket().serialize(out);
@@ -55,15 +63,51 @@ public class ServerConnection extends Thread {
 
     }
 
+    public void addPacketFeedBack(PacketFeedback feedback) {
+
+        packetFeedback.add(feedback);
+
+    }
+
     public void run() {
 
-        while(true)
+        while (true)
             try {
 
                 // получение пакетов от сервера
 
-                while (in.ready())
-                    PacketSerialize.serialize(in).work();
+                while (in.ready()) {
+
+                    Packet inputPacket = PacketSerialize.serialize(in);
+
+                    List<PacketFeedback> toRemove = new ArrayList<>();
+
+                    packetFeedback.forEach(feedback -> {
+
+                        if (feedback.exception() != null)
+                            if (!feedback.exception().isEmpty())
+                                if (inputPacket instanceof ExceptionPacket)
+                                    if (feedback.exception().equals(((ExceptionPacket) inputPacket).getMessage())) {
+
+                                        toRemove.add(feedback);
+                                        feedback.resume(PacketFeedback.Reason.EXCEPTION);
+
+                                    }
+
+                        if (feedback.packet() != null)
+                            if (feedback.packet().equals(Packets.getByClass(inputPacket.getClass()))) {
+
+                                toRemove.add(feedback);
+                                feedback.resume(PacketFeedback.Reason.PACKET);
+
+                            }
+                    });
+
+                    toRemove.forEach(feedback -> packetFeedback.remove(feedback));
+
+                    inputPacket.work();
+
+                }
 
                 // отправка пакетов серверу из очереди
 
@@ -77,6 +121,10 @@ public class ServerConnection extends Thread {
                     packet.serialize(out);
 
                 }
-            } catch (Exception ignored) {}
+            } catch (Exception exception) {
+
+                exception.printStackTrace();
+
+            }
     }
 }

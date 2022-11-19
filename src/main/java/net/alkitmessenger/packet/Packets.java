@@ -47,4 +47,14 @@ public enum Packets {
         return null;
 
     }
+
+    public static Packets getByClass(@NonNull Class<? extends Packet> clazz) {
+
+        for (Packets packets : values())
+            if (packets.getClazz().equals(clazz))
+                return packets;
+
+        return null;
+
+    }
 }

@@ -8,10 +8,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.client.AlkitMessengerClient;
+import net.alkitmessenger.client.ServerConnection;
+import net.alkitmessenger.packet.PacketFeedback;
+import net.alkitmessenger.packet.Packets;
 import net.alkitmessenger.packet.packets.output.UserLoginPacket;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,6 +24,7 @@ import java.util.regex.Pattern;
 public class LoginController implements Initializable {
 
     final AlkitMessengerClient alkitMessengerClient = AlkitMessengerClient.getAlkitMessengerClient();
+    final ServerConnection serverConnection = alkitMessengerClient.getServerConnection();
 
     @FXML
     TextField mailField;
@@ -34,7 +39,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void onAuthorizeClick() {
+    private void onAuthorizeClick() throws InterruptedException {
 
         String mail = mailField.getText();
         String password = passwordField.getText();
@@ -45,14 +50,29 @@ public class LoginController implements Initializable {
         Pattern passwordPattern = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}");
         Matcher passwordMatcher = passwordPattern.matcher(mail);
 
-        if (!mailMatcher.matches() || !passwordMatcher.matches())
-            return;
-
         if (password.length() == 0)
             return;
 
-        alkitMessengerClient.getServerConnection().addPacket(new UserLoginPacket(password));
+        if (!mailMatcher.matches() || !passwordMatcher.matches())
+            return;
 
+        AtomicBoolean login = new AtomicBoolean(false);
+
+        serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
+                Packets.USER_DATA_PACKET, "Password not equal", reason -> {
+
+            if (reason.equals(PacketFeedback.Reason.PACKET))
+                login.set(true);
+
+        }));
+
+        serverConnection.addPacket(new UserLoginPacket(password));
+
+        wait();
+
+        if (!login.get()) {
+
+        }
     }
 
     @FXML
