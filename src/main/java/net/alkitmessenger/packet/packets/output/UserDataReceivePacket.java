@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 @Value
 public class UserDataReceivePacket extends Packet {
 
-    long uid;
+    Long uid;
 
     public void serialize(@NonNull PrintWriter printWriter) {
 

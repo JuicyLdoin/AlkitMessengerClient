@@ -31,7 +31,7 @@ public class AlkitMessengerClient extends Application {
 
     Stage stage;
 
-    final long user;
+    final Long user;
     final UserManager userManager;
 
     final ServerConnection serverConnection;
