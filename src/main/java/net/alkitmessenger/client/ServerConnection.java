@@ -84,18 +84,18 @@ public class ServerConnection extends Thread {
 
                     packetFeedback.forEach(feedback -> {
 
-                        if (feedback.exception() != null)
-                            if (!feedback.exception().isEmpty())
+                        if (feedback.getException() != null)
+                            if (!feedback.getException().isEmpty())
                                 if (inputPacket instanceof ExceptionPacket)
-                                    if (feedback.exception().equals(((ExceptionPacket) inputPacket).getMessage())) {
+                                    if (feedback.getException().equals(((ExceptionPacket) inputPacket).getMessage())) {
 
                                         toRemove.add(feedback);
                                         feedback.resume(PacketFeedback.Reason.EXCEPTION);
 
                                     }
 
-                        if (feedback.packet() != null)
-                            if (feedback.packet().equals(Packets.getByClass(inputPacket.getClass()))) {
+                        if (feedback.getPacket() != null)
+                            if (feedback.getPacket().equals(Packets.getByClass(inputPacket.getClass()))) {
 
                                 toRemove.add(feedback);
                                 feedback.resume(PacketFeedback.Reason.PACKET);
@@ -103,7 +103,7 @@ public class ServerConnection extends Thread {
                             }
                     });
 
-                    toRemove.forEach(feedback -> packetFeedback.remove(feedback));
+                    toRemove.forEach(packetFeedback::remove);
 
                     inputPacket.work();
 
