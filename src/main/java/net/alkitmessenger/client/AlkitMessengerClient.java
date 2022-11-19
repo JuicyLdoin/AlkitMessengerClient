@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+import net.alkitmessenger.packet.packets.output.UserDisconnectPacket;
 import net.alkitmessenger.user.UserManager;
 import net.alkitmessenger.util.CryptorUtil;
 
@@ -74,6 +75,7 @@ public class AlkitMessengerClient extends Application {
     }
 
     public void stop() {
+        serverConnection.addPacket(new UserDisconnectPacket());
         System.exit(-1);
     }
 }
