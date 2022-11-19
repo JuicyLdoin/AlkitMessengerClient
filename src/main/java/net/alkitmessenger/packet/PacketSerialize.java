@@ -18,8 +18,7 @@ public class PacketSerialize {
         if (!bufferedReader.ready())
             throw new IllegalAccessException();
 
-        byte packetID = Byte.parseByte(bufferedReader.readLine());
-        Packets packets = Packets.getByID(packetID);
+        Packets packets = Packets.getByID(Byte.parseByte(bufferedReader.readLine()));
 
         if (packets == null)
             throw new NullPointerException();
