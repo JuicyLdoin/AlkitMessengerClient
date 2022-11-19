@@ -1,8 +1,6 @@
 package net.alkitmessenger.packet.packets.input;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

@@ -1,9 +1,9 @@
 package net.alkitmessenger.packet;
 
 import com.google.gson.Gson;
-import lombok.Value;
+import lombok.Data;
 
-@Value
+@Data
 public class PacketData<T> {
 
     String classPath;
