@@ -74,8 +74,6 @@ public class AlkitMessengerClient extends Application {
     }
 
     public void stop() {
-
-
-
+        System.exit(-1);
     }
 }
