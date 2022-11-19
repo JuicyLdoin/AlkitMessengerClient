@@ -5,9 +5,12 @@ import lombok.Value;
 import net.alkitmessenger.packet.Packet;
 import net.alkitmessenger.packet.PacketSerialize;
 import net.alkitmessenger.packet.packets.output.AuthorizePacket;
+import net.alkitmessenger.packet.packets.output.UserConnectPacket;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.LinkedList;
@@ -17,7 +20,7 @@ import java.util.Scanner;
 @Value
 public class ServerConnection extends Thread {
 
-    Scanner in;
+    BufferedReader in;
 
     Queue<Packet> outPackets;
     PrintWriter out;
@@ -28,12 +31,13 @@ public class ServerConnection extends Thread {
 
             Socket socket = new Socket(host, port);
 
-            in = new Scanner(socket.getInputStream());
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             outPackets = new LinkedList<>();
             out = new PrintWriter(socket.getOutputStream());
 
             new AuthorizePacket().serialize(out);
+            new UserConnectPacket().serialize(out);
 
         } catch (IOException e) {
 
@@ -58,7 +62,7 @@ public class ServerConnection extends Thread {
 
                 // получение пакетов от сервера
 
-                while (in.hasNext())
+                while (in.ready())
                     PacketSerialize.serialize(in).work();
 
                 // отправка пакетов серверу из очереди

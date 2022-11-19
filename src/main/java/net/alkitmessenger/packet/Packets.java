@@ -11,9 +11,10 @@ import net.alkitmessenger.packet.packets.output.*;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public enum Packets {
 
-    USER_DATA_RECEIVE_PACKET((byte) -3, UserDataReceivePacket.class),
-    USER_DISCONNECT_PACKET((byte) -2, UserDisconnectPacket.class),
-    USER_LOGIN_PACKET((byte) -1, UserLoginPacket.class),
+    USER_DATA_RECEIVE_PACKET((byte) -4, UserDataReceivePacket.class),
+    USER_DISCONNECT_PACKET((byte) -3, UserDisconnectPacket.class),
+    USER_LOGIN_PACKET((byte) -2, UserLoginPacket.class),
+    USER_CONNECT_PACKET((byte) -1, UserConnectPacket.class),
 
     AUTHORIZE_PACKET((byte) 0, AuthorizePacket.class),
 

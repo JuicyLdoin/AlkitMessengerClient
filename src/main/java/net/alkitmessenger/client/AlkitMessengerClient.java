@@ -12,6 +12,7 @@ import net.alkitmessenger.user.UserManager;
 import net.alkitmessenger.util.CryptorUtil;
 
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -30,15 +31,17 @@ public class AlkitMessengerClient extends Application {
 
     Stage stage;
 
-    long user;
+    final long user;
     final UserManager userManager;
 
     final ServerConnection serverConnection;
 
     public AlkitMessengerClient() {
 
-        serverConnection = new ServerConnection("localhost", (short) 9090);
+        user = ThreadLocalRandom.current().nextLong();
         userManager = new UserManager();
+
+        serverConnection = new ServerConnection("localhost", (short) 9090);
 
     }
 

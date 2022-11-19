@@ -4,20 +4,21 @@ import com.google.gson.Gson;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 @UtilityClass
 public class PacketSerialize {
 
-    public static Packet serialize(@NonNull Scanner scanner) throws InvocationTargetException, InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException {
+    public static Packet serialize(@NonNull BufferedReader bufferedReader) throws InvocationTargetException, InstantiationException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, IOException {
 
-        if (!scanner.hasNext())
+        if (!bufferedReader.ready())
             throw new IllegalAccessException();
 
-        byte packetID = scanner.nextByte();
+        byte packetID = Byte.parseByte(bufferedReader.readLine());
         Packets packets = Packets.getByID(packetID);
 
         if (packets == null)
@@ -25,8 +26,8 @@ public class PacketSerialize {
 
         List<PacketData<?>> args = new ArrayList<>();
 
-        while (scanner.hasNext())
-            args.add(new Gson().fromJson(scanner.nextLine(), PacketData.class));
+        while (bufferedReader.ready())
+            args.add(new Gson().fromJson(bufferedReader.readLine(), PacketData.class));
 
         Class<?>[] classes = new Class<?>[args.size()];
         Object[] objects = new Object[args.size()];
