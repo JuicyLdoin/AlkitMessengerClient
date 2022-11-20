@@ -11,15 +11,15 @@ import java.util.concurrent.ThreadLocalRandom;
 @Data
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
 public class Message {
 
-    long id;
+    Long id;
 
     StringBuffer[] cryptBytes;
     String text = "Not text";
-    long author;
-    long recipient;
+
+    Long author;
+    Long recipient;
 
     Date date;
 
@@ -34,7 +34,8 @@ public class Message {
         date = new Date();
 
     }
-    public Message(@NonNull StringBuffer cryptBytes[], User author, User recipient) {
+
+    public Message(@NonNull StringBuffer[] cryptBytes, User author, User recipient) {
 
         id = ThreadLocalRandom.current().nextLong();
 
