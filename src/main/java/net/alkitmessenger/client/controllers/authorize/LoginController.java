@@ -12,6 +12,7 @@ import net.alkitmessenger.client.ServerConnection;
 import net.alkitmessenger.packet.PacketFeedback;
 import net.alkitmessenger.packet.Packets;
 import net.alkitmessenger.packet.packets.output.UserLoginPacket;
+import net.alkitmessenger.user.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -78,7 +79,19 @@ public class LoginController implements Initializable {
     @FXML
     private void onRegistrationClick() {
 
+        String mail = mailField.getText();
+        String password = passwordField.getText();
 
+        Pattern mailPattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
+        Matcher mailMatcher = mailPattern.matcher(mail);
 
+        Pattern passwordPattern = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}");
+        Matcher passwordMatcher = passwordPattern.matcher(mail);
+
+        if (!mailMatcher.matches() || !passwordMatcher.matches())
+            return;
+
+        if (password.length() == 0)
+            return;
     }
 }

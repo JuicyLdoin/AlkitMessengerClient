@@ -89,19 +89,13 @@ public class CryptorUtil {
         char[] usedM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
         int comp;
 
-        if (Character.isUpperCase(r)) {
-            for (int i = 0; i < usedM.length; i++) {
-                comp = Character.compare(usedM[i], r);
-                if (comp > 0)
-                    return i;
-            }
-        } else {
-            for (int i = 0; i < usedm.length; i++) {
-                comp = Character.compare(usedm[i], r);
-                if (comp > 0)
-                    return -i;
+        for (int i = 0; i < usedM.length; i++) {
+            comp = Character.compare(Character.isUpperCase(r) ? usedM[r] : usedm[r], r);
+            if (comp > 0){
+                return Character.isUpperCase(r) ? i : -i;
             }
         }
+
         System.gc();
         return -1;
     }
