@@ -11,10 +11,12 @@ import java.io.PrintWriter;
 @Value
 public class UserSendMsgPacket extends Packet {
 
+    Long id;
     Message message;
 
-    public UserSendMsgPacket(String text, User author, User recipient) {
+    public UserSendMsgPacket(long id, String text, User author, User recipient) {
 
+        this.id = id;
         message = new Message(text, author, recipient);
 
     }
