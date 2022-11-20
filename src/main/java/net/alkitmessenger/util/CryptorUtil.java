@@ -41,18 +41,17 @@ public class CryptorUtil {
     }
 
     public static @NotNull String textCryptor(@NotNull String text) {
-        char[] tempArr = text.toCharArray();
 
-        for (int i = 0; i < tempArr.length; i++) {
-            tempArr[i] = highSurrogate(tempArr[i] / 26 + remainsToAlfabet(tempArr[i] % 26));
+        for (int i = 0; i < text.toCharArray().length; i++) {
+            text.toCharArray()[i] = highSurrogate(text.toCharArray()[i] / 26 + remainsToAlfabet(text.toCharArray()[i] % 26));
         }
-        for (int i = 0; i < tempArr.length / 2; i++) {
-            char temp = tempArr[i];
-            tempArr[i] = tempArr[tempArr.length - 1 - i];
-            tempArr[tempArr.length - 1 - i] = temp;
+        for (int i = 0; i < text.toCharArray().length / 2; i++) {
+            char temp = text.toCharArray()[i];
+            text.toCharArray()[i] = text.toCharArray()[text.toCharArray().length - 1 - i];
+            text.toCharArray()[text.toCharArray().length - 1 - i] = temp;
         }
         System.gc();
-        return String.valueOf(tempArr);
+        return String.valueOf(text.toCharArray());
     }
 
     public static byte @NotNull [] byteDecryptor(StringBuffer @NotNull [] cryptByte) {
@@ -91,11 +90,10 @@ public class CryptorUtil {
 
         for (int i = 0; i < usedM.length; i++) {
             comp = Character.compare(Character.isUpperCase(r) ? usedM[r] : usedm[r], r);
-            if (comp > 0){
+            if (comp > 0) {
                 return Character.isUpperCase(r) ? i : -i;
             }
         }
-
         System.gc();
         return -1;
     }
