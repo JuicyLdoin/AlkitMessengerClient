@@ -48,29 +48,33 @@ public class AlkitMessengerClient extends Application {
 
     }
 
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage){
+        try {
 
-        this.stage = stage;
+            this.stage = stage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/mainScene.fxml"));
-        main = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/scenes/mainScene.fxml"));
+            main = fxmlLoader.load();
 
-        scene = new Scene(main, 1080, 720);
+            scene = new Scene(main, 1080, 720);
 
-        stage.setResizable(false);
+            stage.setResizable(false);
 
-        stage.setTitle("AlkitMessenger");
-        stage.setScene(scene);
+            stage.setTitle("AlkitMessenger");
+            stage.setScene(scene);
 
-        stage.show();
+            stage.show();
 
 
 
-        byte[] test = new byte[]{0, 5, -4, 2, 127, -85, 25};
-        StringBuffer[] test1 = CryptorUtil.byteCryptor(test);
-        byte[] test2 = CryptorUtil.byteDecryptor(test1);
-        for (int i = 0; i < test2.length; i++) {
-            System.out.println(test2[i]);
+            byte[] test = new byte[]{0, 5, -4, 2, 127, -85, 25};
+            StringBuffer[] test1 = CryptorUtil.byteCryptor(test);
+            byte[] test2 = CryptorUtil.byteDecryptor(test1);
+            for (int i = 0; i < test2.length; i++) {
+                System.out.println(test2[i]);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

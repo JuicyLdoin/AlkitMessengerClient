@@ -1,12 +1,10 @@
 package net.alkitmessenger.user.message;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.user.User;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -18,25 +16,45 @@ public class Message {
 
     long id;
 
-    String text;
+    StringBuffer[] cryptBytes;
+    String text = "Not text";
     long author;
+    long recipient;
 
     Date date;
 
-    public Message(@NonNull String text, @NonNull long author) {
+    public Message(@NonNull String text, User author, User recipient) {
 
         id = ThreadLocalRandom.current().nextLong();
 
         this.text = text;
-        this.author = author;
+        this.author = author.getId();
+        this.recipient = recipient.getId();
+
+        date = new Date();
+
+    }
+    public Message(@NonNull StringBuffer cryptBytes[], User author, User recipient) {
+
+        id = ThreadLocalRandom.current().nextLong();
+
+        this.cryptBytes = cryptBytes;
+        this.author = author.getId();
+        this.recipient = recipient.getId();
 
         date = new Date();
 
     }
 
-    public Message(@NonNull String text, @NonNull User author) {
-
-        this(text, author.getId());
-
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", cryptBytes=" + Arrays.toString(cryptBytes) +
+                ", text='" + text + '\'' +
+                ", author=" + author +
+                ", recipient=" + recipient +
+                ", date=" + date +
+                '}';
     }
 }
