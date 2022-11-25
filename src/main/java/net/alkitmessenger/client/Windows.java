@@ -19,7 +19,7 @@ public enum Windows {
     LOGIN("/scenes/authorize/loginScene.fxml", 320, 400, false, false, false),
     REGISTER("/scenes/authorize/registrationScene.fxml", 400, 500, false, false, false),
 
-    MAIN("/scenes/mainScene.fxml", 0, 0, true, true, false);
+    MAIN("/scenes/mainScene.fxml", 1080, 720, false, false, false);
 
     String path;
 
