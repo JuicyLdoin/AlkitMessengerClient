@@ -2,6 +2,7 @@ package net.alkitmessenger.client.controllers.authorize;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -33,9 +34,9 @@ public class RegistrationController {
     TextField mailField;
 
     @FXML
-    TextField firstPasswordField;
+    PasswordField firstPasswordField;
     @FXML
-    TextField secondPasswordField;
+    PasswordField secondPasswordField;
 
     @FXML
     private void onRegistrationClick() throws IOException, InterruptedException {

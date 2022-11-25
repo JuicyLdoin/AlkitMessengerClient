@@ -56,7 +56,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="firstPasswordField" prefWidth="175.0" />
+                        <PasswordField fx:id="firstPasswordField" prefWidth="175.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="400.0">
@@ -66,7 +66,7 @@
                               <Font name="System Bold" size="20.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="secondPasswordField" prefWidth="175.0" />
+                        <PasswordField fx:id="secondPasswordField" prefWidth="175.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
