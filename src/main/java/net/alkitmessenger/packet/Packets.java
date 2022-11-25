@@ -13,7 +13,7 @@ import net.alkitmessenger.packet.packets.output.*;
 public enum Packets {
 
     USER_UPDATE_PACKET((byte) -6, UserUpdatePacket.class),
-    // registration packet
+    USER_REGISTRATION_PACKET((byte) -5, UserRegistrationPacket.class),
     USER_DATA_RECEIVE_PACKET((byte) -4, UserDataReceivePacket.class),
     USER_DISCONNECT_PACKET((byte) -3, UserDisconnectPacket.class),
     USER_LOGIN_PACKET((byte) -2, UserLoginPacket.class),
