@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
+import net.alkitmessenger.packet.packets.*;
 import net.alkitmessenger.packet.packets.input.*;
 import net.alkitmessenger.packet.packets.output.*;
 
@@ -11,7 +12,8 @@ import net.alkitmessenger.packet.packets.output.*;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public enum Packets {
 
-    USER_SEND_MESSAGE_PACKET((byte) -5, UserSendMsgPacket.class),
+    USER_UPDATE_PACKET((byte) -6, UserUpdatePacket.class),
+    // registration packet
     USER_DATA_RECEIVE_PACKET((byte) -4, UserDataReceivePacket.class),
     USER_DISCONNECT_PACKET((byte) -3, UserDisconnectPacket.class),
     USER_LOGIN_PACKET((byte) -2, UserLoginPacket.class),
@@ -21,7 +23,9 @@ public enum Packets {
 
     USER_DATA_PACKET((byte) 1, UserDataPacket.class),
     SEND_TO_WINDOW_PACKET((byte) 2, SendToWindowPacket.class),
-    EXCEPTION_PACKET((byte) 3, ExceptionPacket.class);
+    EXCEPTION_PACKET((byte) 3, ExceptionPacket.class),
+
+    USER_MESSAGE_PACKET((byte) 101, UserMessagePacket.class);
 
     byte id;
     Class<? extends Packet> clazz;

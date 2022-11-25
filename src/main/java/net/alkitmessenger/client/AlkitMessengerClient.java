@@ -1,5 +1,6 @@
 package net.alkitmessenger.client;
 
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,10 +10,15 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.packet.packets.output.UserDisconnectPacket;
+import net.alkitmessenger.user.User;
 import net.alkitmessenger.user.UserManager;
-import net.alkitmessenger.util.CryptorUtil;
+import net.alkitmessenger.user.message.PrivateMessagesManager;
+import net.alkitmessenger.util.FileUtil;
 
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -32,18 +38,33 @@ public class AlkitMessengerClient extends Application {
     Stage stage;
 
     final Long user;
+
     final UserManager userManager;
+    final PrivateMessagesManager privateMessagesManager;
 
     final ServerConnection serverConnection;
 
-    public AlkitMessengerClient() {
+    public AlkitMessengerClient() throws IOException, InterruptedException {
 
         alkitMessengerClient = this;
 
-        user = 0L;
-        userManager = new UserManager();
+        File userData = FileUtil.USER_DATA;
+
+        if (userData.exists())
+            user = new Gson().fromJson(new FileReader(userData), User.class).getId();
+        else {
+
+            userData.createNewFile();
+            user = Math.abs(ThreadLocalRandom.current().nextLong());
+
+        }
 
         serverConnection = new ServerConnection("localhost", (short) 9090);
+
+        userManager = new UserManager();
+        userManager.loadLocalUser();
+
+        privateMessagesManager = new PrivateMessagesManager();
 
     }
 
@@ -63,19 +84,21 @@ public class AlkitMessengerClient extends Application {
 
         stage.show();
 
+        User currentUser = userManager.getCurrentUser();
 
+        if (currentUser.equalsPassword("")) {
 
-        byte[] test = new byte[]{0, 5, -4, 2, 127, -85, 25};
-        StringBuffer[] test1 = CryptorUtil.byteCryptor(test);
-        byte[] test2 = CryptorUtil.byteDecryptor(test1);
-        for (int i = 0; i < test2.length; i++) {
-            System.out.println(test2[i]);
+            Windows.REGISTER.open();
+
         }
     }
 
-    public void stop() {
+    public void stop() throws IOException {
+
+        userManager.saveUser();
 
         serverConnection.addPacket(new UserDisconnectPacket());
+
         System.exit(-1);
 
     }

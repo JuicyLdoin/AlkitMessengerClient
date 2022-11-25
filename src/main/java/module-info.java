@@ -16,6 +16,8 @@ module net.alkitmessenger {
     opens net.alkitmessenger.client.controllers to javafx.fxml, javafx.web, lombok, com.google.gson;
     opens net.alkitmessenger.client to javafx.fxml, javafx.graphics, javafx.web, lombok, com.google.gson;
     opens net.alkitmessenger.packet to javafx.fxml, javafx.graphics, javafx.web, lombok, com.google.gson;
+    opens net.alkitmessenger.user to lombok, com.google.gson;
+    opens net.alkitmessenger.user.message to lombok, com.google.gson;
     opens net.alkitmessenger.util to lombok, com.google.gson;
 
 }

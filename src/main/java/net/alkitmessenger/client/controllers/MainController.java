@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import net.alkitmessenger.client.AlkitMessengerClient;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -30,6 +31,8 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        user_name_label.setText(AlkitMessengerClient.getAlkitMessengerClient().getUser().toString());
 
     }
 

@@ -6,7 +6,7 @@ import net.alkitmessenger.packet.Packet;
 import net.alkitmessenger.packet.PacketFeedback;
 import net.alkitmessenger.packet.PacketSerialize;
 import net.alkitmessenger.packet.Packets;
-import net.alkitmessenger.packet.packets.input.ExceptionPacket;
+import net.alkitmessenger.packet.packets.ExceptionPacket;
 import net.alkitmessenger.packet.packets.output.AuthorizePacket;
 import net.alkitmessenger.packet.packets.output.UserConnectPacket;
 import org.jetbrains.annotations.NotNull;
@@ -67,6 +67,19 @@ public class ServerConnection extends Thread {
 
         packetFeedback.add(feedback);
 
+        new Thread(() -> {
+
+            try {
+
+                sleep(1000 * 10);
+                packetFeedback.remove(feedback);
+
+            } catch (InterruptedException e) {
+
+                throw new RuntimeException(e);
+
+            }
+        }).start();
     }
 
     public void run() {
@@ -98,6 +111,8 @@ public class ServerConnection extends Thread {
                             if (feedback.getPacket().equals(Packets.getByClass(inputPacket.getClass()))) {
 
                                 toRemove.add(feedback);
+
+                                feedback.setReceivedPacket(inputPacket);
                                 feedback.resume(PacketFeedback.Reason.PACKET);
 
                             }
@@ -107,6 +122,11 @@ public class ServerConnection extends Thread {
 
                     inputPacket.work();
 
+                    try {
+
+                        outPackets.addAll(inputPacket.feedback());
+
+                    } catch (Exception ignored) {}
                 }
 
                 // отправка пакетов серверу из очереди

@@ -19,9 +19,10 @@ public class PacketFeedback {
 
     final Consumer<PacketFeedback> consumer;
 
+    Packet receivedPacket;
     Reason reason;
 
-    public PacketFeedback(@NotNull Thread waitThread, @Nullable Packets packet, @Nullable String exception, @NotNull Consumer<PacketFeedback> consumer) {
+    public PacketFeedback(@NotNull Thread waitThread, @Nullable Packets packet, @Nullable String exception, @NotNull Consumer<PacketFeedback> consumer) throws InterruptedException {
 
         this.waitThread = waitThread;
 
@@ -35,15 +36,13 @@ public class PacketFeedback {
     public void resume(Reason reason) {
 
         this.reason = reason;
-
-        synchronized (waitThread) {
-
-            waitThread.notify();
-
-        }
-
         consumer.accept(this);
 
+        synchronized (this) {
+
+            notifyAll();
+
+        }
     }
 
     public enum Reason {

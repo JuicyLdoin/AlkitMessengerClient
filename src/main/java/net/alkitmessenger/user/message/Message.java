@@ -19,29 +19,26 @@ public class Message {
     String text = "Not text";
 
     Long author;
-    Long recipient;
 
     Date date;
 
-    public Message(@NonNull String text, User author, User recipient) {
+    public Message(@NonNull String text, User author) {
 
         id = ThreadLocalRandom.current().nextLong();
 
         this.text = text;
         this.author = author.getId();
-        this.recipient = recipient.getId();
 
         date = new Date();
 
     }
 
-    public Message(@NonNull StringBuffer[] cryptBytes, User author, User recipient) {
+    public Message(@NonNull StringBuffer[] cryptBytes, User author) {
 
         id = ThreadLocalRandom.current().nextLong();
 
         this.cryptBytes = cryptBytes;
         this.author = author.getId();
-        this.recipient = recipient.getId();
 
         date = new Date();
 
@@ -49,13 +46,14 @@ public class Message {
 
     @Override
     public String toString() {
+
         return "Message{" +
                 "id=" + id +
                 ", cryptBytes=" + Arrays.toString(cryptBytes) +
                 ", text='" + text + '\'' +
                 ", author=" + author +
-                ", recipient=" + recipient +
                 ", date=" + date +
                 '}';
+
     }
 }

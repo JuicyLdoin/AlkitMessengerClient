@@ -21,7 +21,7 @@ public class User {
     String name;
     String password;
 
-    List<Long> friends;
+    List<User> friends;
 
     Date creationDate;
 

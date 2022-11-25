@@ -1,4 +1,4 @@
-package net.alkitmessenger.packet.packets.input;
+package net.alkitmessenger.packet.packets;
 
 import lombok.Value;
 import net.alkitmessenger.packet.Packet;

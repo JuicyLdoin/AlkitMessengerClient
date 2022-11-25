@@ -1,5 +1,7 @@
 package net.alkitmessenger.user.message;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,8 +9,6 @@ import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.user.User;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -16,7 +16,6 @@ import java.util.stream.Stream;
 @Data
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-
 public class PrivateMessages {
 
     long id;
@@ -24,7 +23,7 @@ public class PrivateMessages {
     long user1;
     long user2;
 
-    List<Message> messages;
+    ObservableList<Message> messages;
 
     public PrivateMessages(@NonNull long user1, @NonNull long user2) {
 
@@ -33,7 +32,7 @@ public class PrivateMessages {
         this.user1 = user1;
         this.user2 = user2;
 
-        messages = new ArrayList<>();
+        messages = FXCollections.observableArrayList();
 
     }
 

@@ -7,7 +7,6 @@ import net.alkitmessenger.packet.Packet;
 
 import java.io.PrintWriter;
 
-@Value
 public class UserDisconnectPacket extends Packet {
 
     public void serialize(@NonNull PrintWriter printWriter) {
