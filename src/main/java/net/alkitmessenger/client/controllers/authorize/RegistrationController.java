@@ -9,8 +9,13 @@ import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.client.AlkitMessengerClient;
 import net.alkitmessenger.client.ServerConnection;
 import net.alkitmessenger.client.Windows;
+import net.alkitmessenger.packet.PacketFeedback;
+import net.alkitmessenger.packet.Packets;
+import net.alkitmessenger.packet.packets.ExceptionPacket;
+import net.alkitmessenger.packet.packets.output.UserRegistrationPacket;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -33,7 +38,7 @@ public class RegistrationController {
     TextField secondPasswordField;
 
     @FXML
-    private void onRegistrationClick() throws IOException {
+    private void onRegistrationClick() throws IOException, InterruptedException {
 
         String name = nameField.getText();
         String mail = mailField.getText();
@@ -71,9 +76,25 @@ public class RegistrationController {
 
         alkitMessengerClient.getSettings().setRememberMe(true);
 
-        // логика регистрации
+        AtomicBoolean register = new AtomicBoolean(false);
 
-        Windows.MAIN.open();
+        serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
+                Packets.USER_DATA_PACKET, null, reason -> register.set(true)));
+
+        serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
+                Packets.EXCEPTION_PACKET, null, reason -> {
+
+            register.set(false);
+            infoLabel.setText(((ExceptionPacket) reason.getReceivedPacket()).getMessage());
+
+        }));
+
+        serverConnection.addPacket(new UserRegistrationPacket(name, mail, firstPassword));
+
+        wait();
+
+        if (register.get())
+            Windows.MAIN.open();
 
     }
 
