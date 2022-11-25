@@ -3,6 +3,7 @@ package net.alkitmessenger.user;
 import com.google.gson.GsonBuilder;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.client.AlkitMessengerClient;
@@ -12,6 +13,7 @@ import net.alkitmessenger.packet.Packets;
 import net.alkitmessenger.packet.packets.input.UserDataPacket;
 import net.alkitmessenger.packet.packets.output.UserDataReceivePacket;
 import net.alkitmessenger.util.FileUtil;
+import net.alkitmessenger.util.builder.PacketFeedbackBuilder;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,6 +22,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Data
+@NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class UserManager {
 
@@ -52,8 +55,15 @@ public class UserManager {
 
         if (user.get() == null) {
 
-            PacketFeedback packetFeedback = new PacketFeedback(Thread.currentThread(), Packets.USER_DATA_PACKET, null,
-                    packetFeedBack -> user.set(((UserDataPacket) packetFeedBack.getReceivedPacket()).getUser()));
+            PacketFeedback packetFeedback = new PacketFeedbackBuilder()
+                    .setWaitThread(Thread.currentThread())
+                    .addConsumer(PacketFeedback.Reason.PACKET, packetFeedBack -> {
+
+                        if (packetFeedBack.getReceivedPacket() instanceof UserDataPacket)
+                            user.set(((UserDataPacket) packetFeedBack.getReceivedPacket()).getUser());
+
+                    })
+                    .build();
 
             serverConnection.addPacketFeedBack(packetFeedback);
             serverConnection.addPacket(new UserDataReceivePacket(id));

@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -13,23 +12,24 @@ import java.util.function.Consumer;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PacketFeedback {
 
-    final Thread waitThread;
+    Thread waitThread;
 
-    final Packets packet;
-    final String exception;
-
-    final Map<Reason, Consumer<PacketFeedback>> consumerMap;
+    Map<Reason, Consumer<PacketFeedback>> consumerMap;
 
     Packet receivedPacket;
     Reason reason;
 
-    public PacketFeedback(@NotNull Thread waitThread, @Nullable Packets packet, @Nullable String exception, @NotNull Map<Reason, Consumer<PacketFeedback>> consumerMap) {
+    public PacketFeedback() {}
+
+    public PacketFeedback(@NotNull Map<Reason, Consumer<PacketFeedback>> consumerMap) {
+
+        this.consumerMap = consumerMap;
+
+    }
+
+    public PacketFeedback(@NotNull Thread waitThread, @NotNull Map<Reason, Consumer<PacketFeedback>> consumerMap) {
 
         this.waitThread = waitThread;
-
-        this.packet = packet;
-        this.exception = exception;
-
         this.consumerMap = consumerMap;
 
     }

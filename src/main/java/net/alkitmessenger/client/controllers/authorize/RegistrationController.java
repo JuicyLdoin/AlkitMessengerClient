@@ -79,8 +79,9 @@ public class RegistrationController {
 
         AtomicBoolean register = new AtomicBoolean(false);
 
-        serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
-                Packets.USER_DATA_PACKET, null, reason -> register.set(true)));
+        PacketFeedback dataFeedback = new PacketFeedback(Thread.currentThread(),
+                Packets.USER_DATA_PACKET, null, reason -> register.set(true));
+        serverConnection.addPacketFeedBack(dataFeedback);
 
         serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
                 Packets.EXCEPTION_PACKET, null, reason -> {
@@ -92,7 +93,11 @@ public class RegistrationController {
 
         serverConnection.addPacket(new UserRegistrationPacket(name, mail, firstPassword));
 
-        wait();
+        synchronized (dataFeedback) {
+
+            dataFeedback.wait();
+
+        }
 
         if (register.get())
             Windows.MAIN.open();
