@@ -69,6 +69,8 @@ public class RegistrationController {
 
         }
 
+        alkitMessengerClient.getSettings().setRememberMe(true);
+
         // логика регистрации
 
         Windows.MAIN.open();

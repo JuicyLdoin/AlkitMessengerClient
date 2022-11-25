@@ -34,6 +34,8 @@ public enum Windows {
     public void open() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
+        AlkitMessengerClient.getAlkitMessengerClient().getScene().setRoot(fxmlLoader.load());
+
         Stage stage = AlkitMessengerClient.getAlkitMessengerClient().getStage();
 
         stage.setWidth(width);
@@ -43,8 +45,6 @@ public enum Windows {
         stage.setMaximized(maximized);
 
         stage.setFullScreen(fullScreen);
-
-        AlkitMessengerClient.getAlkitMessengerClient().getScene().setRoot(fxmlLoader.load());
 
     }
 

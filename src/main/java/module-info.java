@@ -14,6 +14,7 @@ module net.alkitmessenger {
     requires org.kordamp.bootstrapfx.core;
 
     opens net.alkitmessenger.client.controllers to javafx.fxml, javafx.web, lombok, com.google.gson;
+    opens net.alkitmessenger.client.controllers.authorize to javafx.fxml, javafx.web, lombok, com.google.gson;
     opens net.alkitmessenger.client to javafx.fxml, javafx.graphics, javafx.web, lombok, com.google.gson;
     opens net.alkitmessenger.packet to javafx.fxml, javafx.graphics, javafx.web, lombok, com.google.gson;
     opens net.alkitmessenger.user to lombok, com.google.gson;

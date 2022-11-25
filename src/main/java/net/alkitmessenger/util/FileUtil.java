@@ -10,6 +10,7 @@ public class FileUtil {
     public static final File DATA_FOLDER = new File(System.getProperty("user.home") + "\\AlkitMessenger");
 
     public static final File USER_DATA = new File(DATA_FOLDER, "user.json");
+    public static final File USER_SETTINGS = new File(DATA_FOLDER, "user.json");
 
     static {
 

@@ -37,6 +37,8 @@ public class AlkitMessengerClient extends Application {
 
     Stage stage;
 
+    final Settings settings;
+
     final Long user;
 
     final UserManager userManager;
@@ -56,6 +58,17 @@ public class AlkitMessengerClient extends Application {
 
             userData.createNewFile();
             user = Math.abs(ThreadLocalRandom.current().nextLong());
+
+        }
+
+        File userSettings = FileUtil.USER_SETTINGS;
+
+        if (userSettings.exists())
+            settings = new Gson().fromJson(new FileReader(userSettings), Settings.class);
+        else {
+
+            userSettings.createNewFile();
+            settings = new Settings();
 
         }
 
@@ -86,16 +99,19 @@ public class AlkitMessengerClient extends Application {
 
         User currentUser = userManager.getCurrentUser();
 
-        if (currentUser.equalsPassword("")) {
-
+        if (currentUser.equalsPassword(""))
             Windows.REGISTER.open();
+        else if (settings.isRememberMe())
+            Windows.MAIN.open();
+        else
+            Windows.LOGIN.open();
 
-        }
     }
 
     public void stop() throws IOException {
 
         userManager.saveUser();
+        settings.save();
 
         serverConnection.addPacket(new UserDisconnectPacket());
 

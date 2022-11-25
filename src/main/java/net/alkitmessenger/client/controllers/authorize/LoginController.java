@@ -2,6 +2,7 @@ package net.alkitmessenger.client.controllers.authorize;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -36,6 +37,9 @@ public class LoginController implements Initializable {
     TextField mailField;
     @FXML
     PasswordField passwordField;
+
+    @FXML
+    CheckBox rememberMeBox;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
