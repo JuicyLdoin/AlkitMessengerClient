@@ -14,7 +14,7 @@ public class SendToWindowPacket extends Packet {
 
     public void work() throws PacketWorkException {
 
-        Windows windows = Windows.getWindowByPath(path);
+        Windows windows = Windows.getWindowByPath(path.toUpperCase());
 
         if (windows == null)
             throw new PacketWorkException();
