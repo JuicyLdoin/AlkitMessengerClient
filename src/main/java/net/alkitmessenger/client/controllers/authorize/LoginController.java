@@ -54,16 +54,27 @@ public class LoginController implements Initializable {
         String mail = mailField.getText();
         String password = passwordField.getText();
 
+        if (mail.isEmpty()) {
+
+            infoLabel.setText("Введите электронную почту!");
+            return;
+
+        }
+
+        if (password.isEmpty()) {
+
+            infoLabel.setText("Введите пароль!");
+            return;
+
+        }
+
         Pattern mailPattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
         Matcher mailMatcher = mailPattern.matcher(mail);
 
-        Pattern passwordPattern = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}");
-        Matcher passwordMatcher = passwordPattern.matcher(mail);
+//        Pattern passwordPattern = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}");
+//        Matcher passwordMatcher = passwordPattern.matcher(mail);
 
-        if (password.length() == 0)
-            return;
-
-        if (!mailMatcher.matches() || !passwordMatcher.matches())
+        if (!mailMatcher.matches())
             return;
 
         AtomicBoolean login = new AtomicBoolean(false);
