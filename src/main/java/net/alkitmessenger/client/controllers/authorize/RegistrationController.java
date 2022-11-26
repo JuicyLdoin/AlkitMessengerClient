@@ -92,11 +92,13 @@ public class RegistrationController {
                 })
                 .addConsumer(PacketFeedback.Reason.PACKET, feedback -> {
 
-                    if (feedback.getReceivedPacket() instanceof UserDataPacket)
+                    if (feedback.getReceivedPacket() instanceof UserDataPacket) {
+
                         register.set(true);
 
-                    feedback.setRead(true);
+                        feedback.setRead(true);
 
+                    }
                 })
                 .build();
 
