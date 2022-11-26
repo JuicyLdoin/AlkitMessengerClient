@@ -25,26 +25,14 @@ import java.util.concurrent.ThreadLocalRandom;
 public class AlkitMessengerClient extends Application {
 
     private static AlkitMessengerClient alkitMessengerClient;
-
-    public static AlkitMessengerClient getAlkitMessengerClient() {
-
-        return alkitMessengerClient;
-
-    }
-
-    Parent main;
-    Scene scene;
-
-    Stage stage;
-
     final Settings settings;
-
     final Long user;
-
     final UserManager userManager;
     final PrivateMessagesManager privateMessagesManager;
-
     final ServerConnection serverConnection;
+    Parent main;
+    Scene scene;
+    Stage stage;
 
     public AlkitMessengerClient() throws IOException, InterruptedException {
 
@@ -78,6 +66,12 @@ public class AlkitMessengerClient extends Application {
         userManager.loadLocalUser();
 
         privateMessagesManager = new PrivateMessagesManager();
+
+    }
+
+    public static AlkitMessengerClient getAlkitMessengerClient() {
+
+        return alkitMessengerClient;
 
     }
 

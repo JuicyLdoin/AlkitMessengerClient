@@ -9,19 +9,15 @@ import java.util.Queue;
 
 public abstract class Packet {
 
-    public void work() throws PacketWorkException {}
-
-    public Queue<Packet> feedback() { throw new UnsupportedOperationException(); }
-
-    public void serialize(@NonNull PrintWriter printWriter) {}
-
-    protected <T> void writeField(@NonNull PrintWriter printWriter, @NonNull Field field, @NonNull T parent) throws IllegalAccessException {
-
-        new Gson().toJson(new PacketData<>(field.get(parent)), printWriter);
-        printWriter.println();
-
+    public void work() throws PacketWorkException {
     }
 
+    public Queue<Packet> feedback() {
+        throw new UnsupportedOperationException();
+    }
+
+    public void serialize(@NonNull PrintWriter printWriter) {
+    }
     protected <T> void writeObject(@NonNull PrintWriter printWriter, @NonNull T parent) {
 
         new Gson().toJson(new PacketData<>(parent), printWriter);

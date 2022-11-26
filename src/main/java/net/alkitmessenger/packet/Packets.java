@@ -4,8 +4,10 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.experimental.FieldDefaults;
-import net.alkitmessenger.packet.packets.*;
-import net.alkitmessenger.packet.packets.input.*;
+import net.alkitmessenger.packet.packets.ExceptionPacket;
+import net.alkitmessenger.packet.packets.UserMessagePacket;
+import net.alkitmessenger.packet.packets.input.SendToWindowPacket;
+import net.alkitmessenger.packet.packets.input.UserDataPacket;
 import net.alkitmessenger.packet.packets.output.*;
 
 @Getter
@@ -30,20 +32,14 @@ public enum Packets {
     byte id;
     Class<? extends Packet> clazz;
 
-    Packets(@NonNull byte id, @NonNull Class<? extends Packet> clazz) {
+    Packets(byte id, @NonNull Class<? extends Packet> clazz) {
 
         this.id = id;
         this.clazz = clazz;
 
     }
 
-    public int getArgsLength() {
-
-        return clazz.getConstructors()[0].getParameterCount();
-
-    }
-
-    public static Packets getByID(@NonNull byte id) {
+    public static Packets getByID(byte id) {
 
         for (Packets packets : values())
             if (packets.getId() == id)
@@ -60,6 +56,12 @@ public enum Packets {
                 return packets;
 
         return null;
+
+    }
+
+    public int getArgsLength() {
+
+        return clazz.getConstructors()[0].getParameterCount();
 
     }
 }

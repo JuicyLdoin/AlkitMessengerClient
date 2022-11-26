@@ -1,7 +1,6 @@
 package net.alkitmessenger.packet.packets.output;
 
 import lombok.NonNull;
-import lombok.Value;
 import net.alkitmessenger.client.AlkitMessengerClient;
 import net.alkitmessenger.packet.Packet;
 

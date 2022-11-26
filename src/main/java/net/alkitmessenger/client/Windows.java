@@ -31,6 +31,16 @@ public enum Windows {
 
     boolean fullScreen;
 
+    public static @Nullable Windows getWindowByPath(String path) {
+
+        for (Windows window : values())
+            if (window.getPath().equals(path))
+                return window;
+
+        return null;
+
+    }
+
     public void open() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(path));
@@ -45,16 +55,6 @@ public enum Windows {
         stage.setMaximized(maximized);
 
         stage.setFullScreen(fullScreen);
-
-    }
-
-    public static @Nullable Windows getWindowByPath(String path) {
-
-        for (Windows window : values())
-            if (window.getPath().equals(path))
-                return window;
-
-        return null;
 
     }
 }

@@ -68,11 +68,8 @@ public class LoginController implements Initializable {
 
         }
 
-        Pattern mailPattern = Pattern.compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
+        Pattern mailPattern = Pattern.compile("^[\\w-+]+(\\.\\w+)*@[\\w-]+(\\.\\w+)*(\\.[a-z]{2,})$");
         Matcher mailMatcher = mailPattern.matcher(mail);
-
-//        Pattern passwordPattern = Pattern.compile("(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9@#$%]).{8,}");
-//        Matcher passwordMatcher = passwordPattern.matcher(mail);
 
         if (!mailMatcher.matches())
             return;

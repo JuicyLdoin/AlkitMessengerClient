@@ -13,12 +13,9 @@ public class PrivateMessagesManager {
 
     Map<Long, PrivateMessages> privateMessagesMap = new HashMap<>();
 
-    public PrivateMessages getByID(@NonNull long id) {
+    public PrivateMessages getByID(long id) {
 
-        PrivateMessages privateMessages = privateMessagesMap.get(id);
-
-
-        return privateMessages;
+        return privateMessagesMap.get(id);
 
     }
 

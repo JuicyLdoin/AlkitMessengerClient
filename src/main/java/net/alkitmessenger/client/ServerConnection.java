@@ -8,13 +8,13 @@ import net.alkitmessenger.packet.PacketSerialize;
 import net.alkitmessenger.packet.packets.ExceptionPacket;
 import net.alkitmessenger.packet.packets.output.AuthorizePacket;
 import net.alkitmessenger.packet.packets.output.UserConnectPacket;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,11 +30,9 @@ public class ServerConnection extends Thread {
 
     List<PacketFeedback> packetFeedback;
 
-    public ServerConnection(@NonNull String host, @NotNull short port) {
+    public ServerConnection(@NonNull String host, short port) {
 
-        try {
-
-            Socket socket = new Socket(host, port);
+        try(Socket socket = new Socket(host, port)){
 
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
@@ -47,9 +45,7 @@ public class ServerConnection extends Thread {
             new UserConnectPacket().serialize(out);
 
         } catch (IOException e) {
-
             throw new RuntimeException(e);
-
         }
 
         start();
@@ -112,7 +108,8 @@ public class ServerConnection extends Thread {
 
                         outPackets.addAll(inputPacket.feedback());
 
-                    } catch (Exception ignored) {}
+                    } catch (Exception ignored) {
+                    }
                 }
 
                 // отправка пакетов серверу из очереди

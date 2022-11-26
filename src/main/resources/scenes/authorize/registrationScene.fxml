@@ -1,97 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.*?>
-<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox id="background" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="10.0" stylesheets="@../../styles/authorize/registrationPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.alkitmessenger.client.controllers.authorize.RegistrationController">
-   <children>
-      <Label text="Регистрация" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="28.0" />
-         </font>
-      </Label>
-      <Label fx:id="infoLabel" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="350.0" prefWidth="400.0" spacing="20.0">
-         <padding>
-            <Insets top="20.0" />
-         </padding>
-         <children>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="200.0">
-               <children>
-                  <Label text="Логин" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="nameField" prefWidth="200.0" />
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="200.0">
-               <children>
-                  <Label text="Электронный адрес" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="mailField" prefWidth="200.0" />
-               </children>
-            </VBox>
-            <HBox prefHeight="55.0" prefWidth="400.0">
-               <VBox.margin>
-                  <Insets left="10.0" right="10.0" />
-               </VBox.margin>
-               <children>
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="400.0">
-                     <children>
-                        <Label text="Пароль" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="firstPasswordField" prefWidth="175.0" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="400.0">
-                     <children>
-                        <Label text="Повтор пароля" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="secondPasswordField" prefWidth="175.0" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-            <VBox alignment="CENTER" prefHeight="75.0" prefWidth="230.0" spacing="10.0">
-               <children>
-                  <Button id="register_button" mnemonicParsing="false" onMouseClicked="#onRegistrationClick" text="Зарегистрироваться" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label onMouseClicked="#onLoginClick" text="Авторизоваться" textFill="WHITE" underline="true">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Label>
-               </children>
-            </VBox>
-         </children>
+<VBox id="background" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+      minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" spacing="10.0"
+      stylesheets="@../../styles/authorize/registrationPage.css" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="net.alkitmessenger.client.controllers.authorize.RegistrationController">
+   <Label text="Регистрация" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="28.0"/>
+      </font>
+   </Label>
+   <Label fx:id="infoLabel" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="12.0"/>
+      </font>
+   </Label>
+   <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="350.0" prefWidth="400.0" spacing="20.0">
+      <padding>
+         <Insets top="20.0"/>
+      </padding>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="200.0">
+         <Label text="Логин" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="20.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="nameField" prefWidth="200.0"/>
       </VBox>
-   </children>
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="200.0">
+         <Label text="Электронный адрес" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="20.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="mailField" prefWidth="200.0"/>
+      </VBox>
+      <HBox prefHeight="55.0" prefWidth="400.0">
+         <VBox.margin>
+            <Insets left="10.0" right="10.0"/>
+         </VBox.margin>
+         <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="400.0">
+            <Label text="Пароль" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0"/>
+               </font>
+            </Label>
+            <PasswordField fx:id="firstPasswordField" prefWidth="175.0" VBox.vgrow="ALWAYS"/>
+         </VBox>
+         <VBox alignment="CENTER" fillWidth="false" prefHeight="55.0" prefWidth="400.0">
+            <Label text="Повтор пароля" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0"/>
+               </font>
+            </Label>
+            <PasswordField fx:id="secondPasswordField" prefWidth="175.0" VBox.vgrow="ALWAYS"/>
+         </VBox>
+      </HBox>
+      <VBox alignment="CENTER" prefHeight="75.0" prefWidth="230.0" spacing="10.0">
+         <Button id="register_button" mnemonicParsing="false" onMouseClicked="#onRegistrationClick"
+                 text="Зарегистрироваться" textFill="WHITE">
+            <font>
+               <Font name="System Bold" size="20.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Button>
+         <Label onMouseClicked="#onLoginClick" text="Авторизоваться" textFill="WHITE" underline="true">
+            <font>
+               <Font size="16.0"/>
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND"/>
+            </cursor>
+         </Label>
+      </VBox>
+   </VBox>
 </VBox>

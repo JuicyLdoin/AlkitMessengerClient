@@ -34,7 +34,6 @@ public class UserMessagePacket extends Packet {
         else {
 
 
-
         }
     }
 
