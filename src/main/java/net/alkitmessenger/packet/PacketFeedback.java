@@ -19,6 +19,8 @@ public class PacketFeedback {
     Packet receivedPacket;
     Reason reason;
 
+    boolean read = false;
+
     public PacketFeedback() {}
 
     public PacketFeedback(@NotNull Map<Reason, Consumer<PacketFeedback>> consumerMap) {

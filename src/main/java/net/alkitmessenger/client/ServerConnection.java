@@ -5,7 +5,6 @@ import lombok.Value;
 import net.alkitmessenger.packet.Packet;
 import net.alkitmessenger.packet.PacketFeedback;
 import net.alkitmessenger.packet.PacketSerialize;
-import net.alkitmessenger.packet.Packets;
 import net.alkitmessenger.packet.packets.ExceptionPacket;
 import net.alkitmessenger.packet.packets.output.AuthorizePacket;
 import net.alkitmessenger.packet.packets.output.UserConnectPacket;
@@ -97,25 +96,12 @@ public class ServerConnection extends Thread {
 
                     packetFeedback.forEach(feedback -> {
 
-                        if (feedback.getException() != null)
-                            if (!feedback.getException().isEmpty())
-                                if (inputPacket instanceof ExceptionPacket)
-                                    if (feedback.getException().equals(((ExceptionPacket) inputPacket).getMessage())) {
+                        feedback.setReceivedPacket(inputPacket);
+                        feedback.resume(inputPacket instanceof ExceptionPacket ? PacketFeedback.Reason.EXCEPTION : PacketFeedback.Reason.PACKET);
 
-                                        toRemove.add(feedback);
-                                        feedback.resume(PacketFeedback.Reason.EXCEPTION);
+                        if (feedback.isRead())
+                            toRemove.add(feedback);
 
-                                    }
-
-                        if (feedback.getPacket() != null)
-                            if (feedback.getPacket().equals(Packets.getByClass(inputPacket.getClass()))) {
-
-                                toRemove.add(feedback);
-
-                                feedback.setReceivedPacket(inputPacket);
-                                feedback.resume(PacketFeedback.Reason.PACKET);
-
-                            }
                     });
 
                     toRemove.forEach(packetFeedback::remove);
