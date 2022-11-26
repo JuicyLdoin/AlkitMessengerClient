@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.packet.packets.ExceptionPacket;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
@@ -22,7 +23,11 @@ public class PacketFeedback {
 
     boolean read = false;
 
-    public PacketFeedback() {}
+    public PacketFeedback() {
+
+        consumerMap = new HashMap<>();
+
+    }
 
     public PacketFeedback(@NotNull Map<Reason, Consumer<PacketFeedback>> consumerMap) {
 
