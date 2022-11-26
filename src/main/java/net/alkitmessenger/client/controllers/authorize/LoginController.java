@@ -49,7 +49,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    private void onAuthorizeClick() throws InterruptedException {
+    private void onAuthorizeClick() throws InterruptedException, IOException {
 
         String mail = mailField.getText();
         String password = passwordField.getText();
@@ -124,9 +124,9 @@ public class LoginController implements Initializable {
 
         }
 
-        if (!login.get()) {
+        if (login.get())
+            Windows.MAIN.open();
 
-        }
     }
 
     @FXML
