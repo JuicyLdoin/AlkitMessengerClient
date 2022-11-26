@@ -11,9 +11,10 @@ import net.alkitmessenger.client.AlkitMessengerClient;
 import net.alkitmessenger.client.ServerConnection;
 import net.alkitmessenger.client.Windows;
 import net.alkitmessenger.packet.PacketFeedback;
-import net.alkitmessenger.packet.Packets;
 import net.alkitmessenger.packet.packets.ExceptionPacket;
+import net.alkitmessenger.packet.packets.input.UserDataPacket;
 import net.alkitmessenger.packet.packets.output.UserRegistrationPacket;
+import net.alkitmessenger.util.builder.PacketFeedbackBuilder;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -79,23 +80,30 @@ public class RegistrationController {
 
         AtomicBoolean register = new AtomicBoolean(false);
 
-        PacketFeedback dataFeedback = new PacketFeedback(Thread.currentThread(),
-                Packets.USER_DATA_PACKET, null, reason -> register.set(true));
-        serverConnection.addPacketFeedBack(dataFeedback);
+        PacketFeedback packetFeedback = new PacketFeedbackBuilder()
+                .setWaitThread(Thread.currentThread())
+                .addConsumer(PacketFeedback.Reason.EXCEPTION, feedback -> {
 
-        serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
-                Packets.EXCEPTION_PACKET, null, reason -> {
+                    register.set(false);
+                    infoLabel.setText(((ExceptionPacket) feedback.getReceivedPacket()).getMessage());
 
-            register.set(false);
-            infoLabel.setText(((ExceptionPacket) reason.getReceivedPacket()).getMessage());
+                    feedback.setRead(true);
 
-        }));
+                })
+                .addConsumer(PacketFeedback.Reason.PACKET, feedback -> {
 
+                    if (feedback.getReceivedPacket() instanceof UserDataPacket)
+                        register.set(true);
+
+                })
+                .build();
+
+        serverConnection.addPacketFeedBack(packetFeedback);
         serverConnection.addPacket(new UserRegistrationPacket(name, mail, firstPassword));
 
-        synchronized (dataFeedback) {
+        synchronized (packetFeedback) {
 
-            dataFeedback.wait();
+            packetFeedback.wait();
 
         }
 

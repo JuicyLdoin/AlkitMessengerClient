@@ -13,8 +13,9 @@ import net.alkitmessenger.client.AlkitMessengerClient;
 import net.alkitmessenger.client.ServerConnection;
 import net.alkitmessenger.client.Windows;
 import net.alkitmessenger.packet.PacketFeedback;
-import net.alkitmessenger.packet.Packets;
+import net.alkitmessenger.packet.packets.input.UserDataPacket;
 import net.alkitmessenger.packet.packets.output.UserLoginPacket;
+import net.alkitmessenger.util.builder.PacketFeedbackBuilder;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,7 +44,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
 
     }
@@ -79,25 +79,42 @@ public class LoginController implements Initializable {
 
         AtomicBoolean login = new AtomicBoolean(false);
 
-        serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
-                Packets.USER_DATA_PACKET, "User not found", reason -> {
+        PacketFeedback packetFeedback = new PacketFeedbackBuilder()
+                .setWaitThread(Thread.currentThread())
+                .addConsumer(PacketFeedback.Reason.EXCEPTION, feedback -> {
 
-            if (reason.getReason().equals(PacketFeedback.Reason.PACKET))
-                login.set(true);
+                    if (feedback.getException().equals("User not found")) {
 
-        }));
+                        login.set(false);
+                        infoLabel.setText("Пользователь не найден!");
 
-        serverConnection.addPacketFeedBack(new PacketFeedback(Thread.currentThread(),
-                Packets.USER_DATA_PACKET, "Password not equal", reason -> {
+                    }
+                })
+                .addConsumer(PacketFeedback.Reason.EXCEPTION, feedback -> {
 
-            if (reason.getReason().equals(PacketFeedback.Reason.PACKET))
-                login.set(true);
+                    if (feedback.getException().equals("Password not equal")) {
 
-        }));
+                        login.set(false);
+                        infoLabel.setText("Пароль не верный!");
 
+                    }
+                })
+                .addConsumer(PacketFeedback.Reason.PACKET, feedback -> {
+
+                    if (feedback.getReceivedPacket() instanceof UserDataPacket)
+                        login.set(true);
+
+                })
+                .build();
+
+        serverConnection.addPacketFeedBack(packetFeedback);
         serverConnection.addPacket(new UserLoginPacket(password));
 
-        wait();
+        synchronized (packetFeedback) {
+
+            packetFeedback.wait();
+
+        }
 
         if (!login.get()) {
 
