@@ -9,7 +9,6 @@ import lombok.experimental.FieldDefaults;
 import net.alkitmessenger.client.AlkitMessengerClient;
 import net.alkitmessenger.client.ServerConnection;
 import net.alkitmessenger.packet.PacketFeedback;
-import net.alkitmessenger.packet.Packets;
 import net.alkitmessenger.packet.packets.input.UserDataPacket;
 import net.alkitmessenger.packet.packets.output.UserDataReceivePacket;
 import net.alkitmessenger.util.FileUtil;
