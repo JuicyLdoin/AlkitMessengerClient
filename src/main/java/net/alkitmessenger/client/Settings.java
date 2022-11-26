@@ -17,7 +17,7 @@ public class Settings {
 
     public void save() throws IOException {
 
-        FileWriter fileWriter = new FileWriter(FileUtil.USER_DATA);
+        FileWriter fileWriter = new FileWriter(FileUtil.USER_SETTINGS);
 
         new GsonBuilder().setPrettyPrinting().create().toJson(this, fileWriter);
 
