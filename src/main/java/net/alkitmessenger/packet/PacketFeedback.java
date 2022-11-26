@@ -3,6 +3,7 @@ package net.alkitmessenger.packet;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import net.alkitmessenger.packet.packets.ExceptionPacket;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Map;
@@ -50,6 +51,18 @@ public class PacketFeedback {
             notifyAll();
 
         }
+    }
+
+    public String getException() {
+
+        if (receivedPacket == null)
+            throw new NullPointerException();
+
+        if (!(receivedPacket instanceof ExceptionPacket))
+            throw new UnsupportedOperationException();
+
+        return ((ExceptionPacket) receivedPacket).getMessage();
+
     }
 
     public enum Reason {
