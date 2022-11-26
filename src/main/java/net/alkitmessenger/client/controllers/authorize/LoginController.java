@@ -89,6 +89,9 @@ public class LoginController implements Initializable {
                         infoLabel.setText("Пользователь не найден!");
 
                     }
+
+                    feedback.setRead(true);
+
                 })
                 .addConsumer(PacketFeedback.Reason.EXCEPTION, feedback -> {
 
@@ -98,11 +101,16 @@ public class LoginController implements Initializable {
                         infoLabel.setText("Пароль не верный!");
 
                     }
+
+                    feedback.setRead(true);
+
                 })
                 .addConsumer(PacketFeedback.Reason.PACKET, feedback -> {
 
                     if (feedback.getReceivedPacket() instanceof UserDataPacket)
                         login.set(true);
+
+                    feedback.setRead(true);
 
                 })
                 .build();

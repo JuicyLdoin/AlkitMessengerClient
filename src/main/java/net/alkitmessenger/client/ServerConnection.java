@@ -99,7 +99,8 @@ public class ServerConnection extends Thread {
                         feedback.setReceivedPacket(inputPacket);
                         feedback.resume(inputPacket instanceof ExceptionPacket ? PacketFeedback.Reason.EXCEPTION : PacketFeedback.Reason.PACKET);
 
-                        toRemove.add(feedback);
+                        if (feedback.isRead())
+                            toRemove.add(feedback);
 
                     });
 

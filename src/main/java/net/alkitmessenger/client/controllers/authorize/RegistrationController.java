@@ -87,11 +87,15 @@ public class RegistrationController {
                     register.set(false);
                     infoLabel.setText(((ExceptionPacket) feedback.getReceivedPacket()).getMessage());
 
+                    feedback.setRead(true);
+
                 })
                 .addConsumer(PacketFeedback.Reason.PACKET, feedback -> {
 
                     if (feedback.getReceivedPacket() instanceof UserDataPacket)
                         register.set(true);
+
+                    feedback.setRead(true);
 
                 })
                 .build();
